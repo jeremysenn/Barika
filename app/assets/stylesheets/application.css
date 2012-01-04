@@ -1,0 +1,171 @@
+/*
+ * This is a manifest file that'll automatically include all the stylesheets available in this directory
+ * and any sub-directories. You're free to add application-wide styles to this file and they'll appear at
+ * the top of the compiled file, but it's generally better to create a new file per style scope.
+ *= require_self
+ *= require_tree . 
+*/
+
+html, body {
+  background-color: #4B7399;
+  font-family: Verdana, Helvetica, Arial;
+  font-size: 14px;
+}
+
+a img {
+  border: none;
+}
+
+a {
+  color: #0000FF;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+.clear {
+  clear: both;
+  height: 0;
+  overflow: hidden;
+}
+
+#container {
+  width: 75%;
+  margin: 0 auto;
+  background-color: #FFF;
+  padding: 20px 40px;
+  border: solid 1px black;
+  margin-top: 20px;
+  overflow:hidden;
+}
+
+#flash_notice, #flash_error, #flash_alert {
+  padding: 5px 8px;
+  margin: 10px 0;
+}
+
+#flash_notice {
+  background-color: #CFC;
+  border: solid 1px #6C6;
+}
+
+#flash_error, #flash_alert {
+  background-color: #FCC;
+  border: solid 1px #C66;
+}
+
+form label {
+  display: block;
+  margin-bottom: 2px;
+}
+
+form .field, form .actions {
+  margin: 12px 0;
+}
+
+.fieldWithErrors {
+  display: inline;
+}
+
+.error_messages {
+  width: 400px;
+  border: 2px solid #CF0000;
+  padding: 0px;
+  margin-bottom: 20px;
+  background-color: #f0f0f0;
+  font-size: 12px;
+}
+
+.error_messages h2 {
+  text-align: left;
+  font-weight: bold;
+  padding: 5px 10px;
+  font-size: 12px;
+  margin: 0;
+  background-color: #c00;
+  color: #fff;
+}
+
+.error_messages p {
+  margin: 8px 10px;
+}
+
+.error_messages ul {
+  margin: 15px 0;
+}
+
+.right {
+  text-align: right;
+}
+
+/* BOXES */
+.notes_box {background-color: #EFEFEF; float:right; width:60%; padding:20px 20px 0px 20px; text-align:left; border:1px solid #b3b3b3; display:block;}
+.tags_box {background-color: #EFEFEF; float:left; width:20%; padding:20px 20px 0px 20px; text-align:left; border:1px solid #b3b3b3; display:block;}
+
+/* POPUP OVERLAY WINDOWS */
+.popup_overlay {
+
+	/* must be initially hidden */
+	display:none;
+
+	/* place overlay on top of other elements */
+	z-index:10000;
+
+	/* styling */
+	background-color:#333;
+
+	width:675px;
+	min-height:200px;
+	border:1px solid #666;
+
+	/* CSS3 styling for latest browsers */
+	-moz-box-shadow:0 0 90px 5px #000;
+	-webkit-box-shadow: 0 0 90px #000;
+}
+
+/* close button positioned on upper right corner */
+.popup_overlay .close {
+	background-image:url('close.png');
+	position:absolute;
+	right:-15px;
+	top:-15px;
+	cursor:pointer;
+	height:35px;
+	width:35px;
+}
+
+.popup_overlay_450_225 {
+
+  /* initially hidden */
+  display:none;
+
+  padding: 15px;
+  text-align: left;
+
+  /* place overlay on top of other elements */
+  z-index:10000;
+
+  /* styling */
+  background-color:#4B7399;
+  color:#ffffff;
+
+  width:450px;
+  min-height:225px;
+  border:1px solid #666;
+
+  /* CSS3 styling for latest browsers */
+  -moz-box-shadow:0 0 90px 5px #000;
+  -webkit-box-shadow: 0 0 90px #000;
+}
+
+.popup_overlay_450_225 .close {
+  background-image:url('close.png');
+  position:absolute;
+  right:-15px;
+  top:-15px;
+  cursor:pointer;
+  height:35px;
+  width:35px;
+}

@@ -1,0 +1,9 @@
+= f.label :date, "Date"
+= f.date_select :date
+= f.label :details, "Note details"
+= f.text_area :details
+= f.label :tag_names, "Tags"
+= f.text_field :tag_names, :id => 'tags'
+
+%script
+  $(document).ready(function() { $("#tags").tagsInput(); });

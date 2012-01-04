@@ -1,0 +1,33 @@
+- title "Appuser"
+
+%p
+  %strong Appuserid:
+  = @appuser.appuserid
+%p
+  %strong Username:
+  = @appuser.username
+%p
+  %strong Password:
+  = @appuser.password
+%p
+  %strong Statusid:
+  = @appuser.statusid
+%p
+  %strong Created:
+  = @appuser.created
+%p
+  %strong Createdby:
+  = @appuser.createdby
+%p
+  %strong Modified:
+  = @appuser.modified
+%p
+  %strong Modifiedby:
+  = @appuser.modifiedby
+
+%p
+  = link_to "Edit", edit_appuser_path(@appuser)
+  |
+  = link_to "Destroy", @appuser, :confirm => 'Are you sure?', :method => :delete
+  |
+  = link_to "View All", appusers_path

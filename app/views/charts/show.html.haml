@@ -1,0 +1,43 @@
+%h1{:style => "text-align: center"}= @chart.client.full_name + " " + "Chart"
+.tags_box
+  #right{:style => "text-align: right;"}
+    = link_to "New Tag", new_tag_path, :title => "Create new Tag", :class => 'right tooltip'
+  %p= link_to 'All', @chart
+  - @tags.each do |tag|
+    - unless params[:tag] == tag.name
+      %p= link_to tag.name, chart_path(@chart, :tag => tag.name)
+    - else
+      %p{:style => "color: #be1839;"}= tag.name
+.notes_box
+  #right{:style => "text-align: right;"}
+    = link_to "New Note", new_note_path(:chart => @chart), :rel => "#popup_new", :title => "Create new Chart Note", :class => 'right tooltip popup'
+    = render :partial => 'notes/popup_new', :locals => {:chart => @chart, :note => Note.new}
+  %p
+    - unless @notes.empty?
+      - @notes.sort_by(&:date).reverse.each do |note|
+        %p{:style => "margin-top: 2px; margin-bottom: 1px;"}= note.date.strftime("%m/%d/%Y")
+        %p{:style => "margin-top: 2px; margin-bottom: 1px;"}= link_to truncate(note.details, :length => 80), '#', :rel => "#note_" + note.id.to_s, :title => "View Chart Note details", :class => "popup tooltip"
+        = render :partial => 'notes/popup_show', :locals => {:note => note}
+        - note.tags.each do |tag|
+          - unless tag == note.tags.last
+            = link_to tag.name + ',', tag, :style => "color: #be1839;"
+          - else
+            = link_to tag.name, tag, :style => "color: #be1839;"
+        %br
+        %br
+    - else
+      None
+    = paginate @notes
+
+- if false
+  %p
+    = link_to "Edit", edit_chart_path(@chart)
+    |
+    = link_to "Destroy", @chart, :confirm => 'Are you sure?', :method => :delete
+    |
+    = link_to "View All", charts_path
+    |
+    = link_to "New Note", new_note_path(:chart => @chart)
+
+%script
+  $(document).ready(function() {$(".popup").overlay(); $('.tooltip').tooltip({track: true,delay: 0,showURL: false,opacity: 0.7});});

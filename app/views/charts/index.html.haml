@@ -1,0 +1,13 @@
+- title "Charts"
+
+%table
+  %tr
+    %th Client
+  - for chart in @charts
+    %tr
+      %td= chart.client.full_name
+      %td= link_to 'Show', chart
+      %td= link_to 'Edit', edit_chart_path(chart)
+      %td= link_to 'Destroy', chart, :confirm => 'Are you sure?', :method => :delete
+
+%p= link_to "New Chart", new_chart_path

@@ -1,0 +1,27 @@
+= form_for @note do |f|
+  = f.error_messages
+  %p
+    = f.label :chart_id
+    %br
+    =# f.number_field :chart_id
+    - if params[:chart].blank?
+      = f.select :chart_id, Chart.all.collect {|c| [ c.client.full_name, c.id ] }, {:include_blank => false}
+    - else
+      = f.hidden_field :chart_id, :value => params[:chart]
+      = Chart.find(params[:chart]).client.full_name
+  %p
+    = f.label :date
+    %br
+    = f.date_select :date
+  %p
+    = f.label :details
+    %br
+    = f.text_area :details
+  %p
+    = f.label :tag_names, "Tags"
+    = f.text_field :tag_names, :id => 'tags'
+  %p
+    = f.submit
+
+%script
+  $(document).ready(function() { $("#tags").tagsInput(); });

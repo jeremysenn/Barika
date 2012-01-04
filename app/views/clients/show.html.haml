@@ -1,0 +1,78 @@
+- title "Client"
+
+%p
+  %strong Clientid:
+  = @client.clientid
+%p
+  %strong Threadid:
+  = @client.threadid
+%p
+  %strong Nick:
+  = @client.nick
+%p
+  %strong Prefix:
+  = @client.prefix
+%p
+  %strong First:
+  = @client.first
+%p
+  %strong Middle:
+  = @client.middle
+%p
+  %strong Last:
+  = @client.last
+%p
+  %strong Suffix:
+  = @client.suffix
+%p
+  %strong Maritalstatusid:
+  = @client.maritalstatusid
+%p
+  %strong Statusid:
+  = @client.statusid
+%p
+  %strong Dob:
+  = @client.dob
+%p
+  %strong Anniversary:
+  = @client.anniversary
+%p
+  %strong Deceased:
+  = @client.deceased
+%p
+  %strong Etr:
+  = @client.etr
+%p
+  %strong Ssn:
+  = @client.ssn
+%p
+  %strong Gender:
+  = @client.gender
+%p
+  %strong Spousename:
+  = @client.spousename
+%p
+  %strong Created:
+  = @client.created
+%p
+  %strong Createdby:
+  = @client.createdby
+%p
+  %strong Modified:
+  = @client.modified
+%p
+  %strong Modifiedby:
+  = @client.modifiedby
+%p
+  %strong Preferred:
+  = @client.preferred
+%p
+  %strong Nomassmailing:
+  = @client.nomassmailing
+
+%p
+  = link_to "Edit", edit_client_path(@client)
+  |
+  = link_to "Destroy", @client, :confirm => 'Are you sure?', :method => :delete
+  |
+  = link_to "View All", clients_path

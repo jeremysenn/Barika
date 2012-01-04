@@ -1,0 +1,5 @@
+- Client.all.sort_by(&:last).each do |client|
+  - unless client.chart.blank?
+    %p= link_to client.full_name, client.chart
+  - else
+    %p= link_to client.full_name, new_chart_path(:client => client)

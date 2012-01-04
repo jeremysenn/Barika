@@ -1,0 +1,27 @@
+- title "Appusers"
+
+%table
+  %tr
+    %th Appuserid
+    %th Username
+    %th Password
+    %th Statusid
+    %th Created
+    %th Createdby
+    %th Modified
+    %th Modifiedby
+  - for appuser in @appusers
+    %tr
+      %td= appuser.appuserid
+      %td= appuser.username
+      %td= appuser.password
+      %td= appuser.statusid
+      %td= appuser.created
+      %td= appuser.createdby
+      %td= appuser.modified
+      %td= appuser.modifiedby
+      %td= link_to 'Show', appuser
+      %td= link_to 'Edit', edit_appuser_path(appuser)
+      %td= link_to 'Destroy', appuser, :confirm => 'Are you sure?', :method => :delete
+
+%p= link_to "New Appuser", new_appuser_path

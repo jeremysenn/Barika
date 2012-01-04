@@ -1,0 +1,24 @@
+- title "Chart Note"
+
+%p
+  %strong Client:
+  = @note.chart.client.full_name
+%p
+  %strong Date:
+  = @note.date.strftime("%m/%d/%Y")
+%p
+  %strong Details:
+  = @note.details
+%p
+  %strong Tags:
+  %ul{:id => 'tags'}
+    - @note.tags.each do |tag|
+      %li= tag.name
+
+%p
+  = link_to "Edit", edit_note_path(@note)
+  |
+  = link_to "Destroy", @note, :confirm => 'Are you sure?', :method => :delete
+  |
+  = link_to "Back to Chart", @note.chart
+  =# link_to "View All", notes_path

@@ -1,0 +1,11 @@
+= form_for @chart do |f|
+  = f.error_messages
+  %p
+    = f.label :client_id
+    %br
+    = f.select :client_id, Client.all.collect {|c| [ c.full_name, c.id ] }, {:include_blank => false}
+  %p
+  = f.fields_for :notes do |builder|
+    = render "note_fields", :f => builder
+  %p
+    = f.submit

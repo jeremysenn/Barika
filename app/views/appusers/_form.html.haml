@@ -1,0 +1,36 @@
+= form_for @appuser do |f|
+  = f.error_messages
+  %p
+    = f.label :appuserid
+    %br
+    = f.number_field :appuserid
+  %p
+    = f.label :username
+    %br
+    = f.text_field :username
+  %p
+    = f.label :password
+    %br
+    = f.text_field :password
+  %p
+    = f.label :statusid
+    %br
+    = f.number_field :statusid
+  %p
+    = f.label :created
+    %br
+    = f.datetime_select :created
+  %p
+    = f.label :createdby
+    %br
+    = f.number_field :createdby
+  %p
+    = f.label :modified
+    %br
+    = f.datetime_select :modified
+  %p
+    = f.label :modifiedby
+    %br
+    = f.number_field :modifiedby
+  %p
+    = f.submit

@@ -1,0 +1,7 @@
+one:
+  chart_id: 1
+  details: MyText
+
+two:
+  chart_id: 1
+  details: MyText

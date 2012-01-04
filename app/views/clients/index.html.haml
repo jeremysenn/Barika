@@ -1,0 +1,31 @@
+- title "Clients"
+
+%table
+  %tr
+    %th Clientid
+    %th Nick
+    %th First
+    %th Last
+    %th Dob
+    %th Gender
+    %th Created
+    %th Createdby
+    %th Modified
+    %th Modifiedby
+  - for client in @clients
+    %tr
+      %td= client.clientid
+      %td= client.nick
+      %td= client.first
+      %td= client.last
+      %td= client.dob
+      %td= client.gender
+      %td= client.created
+      %td= client.createdby
+      %td= client.modified
+      %td= client.modifiedby
+      %td= link_to 'Show', client
+      %td= link_to 'Edit', edit_client_path(client)
+      %td= link_to 'Destroy', client, :confirm => 'Are you sure?', :method => :delete
+
+%p= link_to "New Client", new_client_path

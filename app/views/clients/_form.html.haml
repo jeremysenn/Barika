@@ -1,0 +1,96 @@
+= form_for @client do |f|
+  = f.error_messages
+  %p
+    = f.label :clientid
+    %br
+    = f.number_field :clientid
+  %p
+    = f.label :threadid
+    %br
+    = f.number_field :threadid
+  %p
+    = f.label :nick
+    %br
+    = f.text_field :nick
+  %p
+    = f.label :prefix
+    %br
+    = f.text_field :prefix
+  %p
+    = f.label :first
+    %br
+    = f.text_field :first
+  %p
+    = f.label :middle
+    %br
+    = f.text_field :middle
+  %p
+    = f.label :last
+    %br
+    = f.text_field :last
+  %p
+    = f.label :suffix
+    %br
+    = f.text_field :suffix
+  %p
+    = f.label :maritalstatusid
+    %br
+    = f.number_field :maritalstatusid
+  %p
+    = f.label :statusid
+    %br
+    = f.number_field :statusid
+  %p
+    = f.label :dob
+    %br
+    = f.date_select :dob
+  %p
+    = f.label :anniversary
+    %br
+    = f.date_select :anniversary
+  %p
+    = f.label :deceased
+    %br
+    = f.text_field :deceased
+  %p
+    = f.label :etr
+    %br
+    = f.text_field :etr
+  %p
+    = f.label :ssn
+    %br
+    = f.text_field :ssn
+  %p
+    = f.label :gender
+    %br
+    = f.text_field :gender
+  %p
+    = f.label :spousename
+    %br
+    = f.text_field :spousename
+  %p
+    = f.label :created
+    %br
+    = f.datetime_select :created
+  %p
+    = f.label :createdby
+    %br
+    = f.number_field :createdby
+  %p
+    = f.label :modified
+    %br
+    = f.datetime_select :modified
+  %p
+    = f.label :modifiedby
+    %br
+    = f.number_field :modifiedby
+  %p
+    = f.label :preferred
+    %br
+    = f.text_field :preferred
+  %p
+    = f.label :nomassmailing
+    %br
+    = f.text_field :nomassmailing
+  %p
+    = f.submit
