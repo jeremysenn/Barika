@@ -1,19 +1,32 @@
 %h1{:style => "text-align: center"}= @chart.client.full_name + " " + "Chart"
 .tags_box
   #right{:style => "text-align: right;"}
-    = link_to "New Tag", new_tag_path, :title => "Create new Tag", :class => 'right tooltip'
-  %p= link_to 'All', @chart
-  - @tags.each do |tag|
-    - unless params[:tag] == tag.name
-      %p= link_to tag.name, chart_path(@chart, :tag => tag.name)
+    = link_to_function "Multiple Tags &#8711;".html_safe, "$('#multiple_tags').toggle(); $(this).toggle();", :id => 'down_arrow', :title => 'Show multiple tag filter', :class => 'tooltip'
+    =# link_to "New Tag", new_tag_path, :title => "Create new Tag", :class => 'right tooltip'
+  #multiple_tags{:style => "display: none; text-align: right"}
+    = link_to_function "Multiple Tags &#916;".html_safe, "$('#down_arrow').toggle(); $('#multiple_tags').toggle();", :title => 'Hide multiple tag filter', :class => 'tooltip'
+    = form_tag @chart, :method => 'get' do
+      = label_tag 'tags', 'Select one or more tags to filter on', :style => "margin: 5px;"
+      = select_tag 'tags', options_from_collection_for_select(@tags, "id", "name"), :multiple => true
+      = submit_tag "Filter", :style => "margin: 5px; width: 70px"
+  #single_tags
+    - if params[:tag].blank? and params[:tags].blank?
+      %strong
+        All
     - else
-      %p{:style => "color: #be1839;"}= tag.name
+      %p= link_to 'All', @chart
+    - @tags.each do |tag|
+      - if (!params[:tag].blank? and params[:tag] == tag.name) or (!params[:tags].blank? and params[:tags].include?(tag.id.to_s))
+        %p
+          %strong= tag.name
+      - else
+        %p= link_to tag.name, chart_path(@chart, :tag => tag.name)
 .notes_box
   #right{:style => "text-align: right;"}
     = link_to "New Note", new_note_path(:chart => @chart), :rel => "#popup_new", :title => "Create new Chart Note", :class => 'right tooltip popup'
     = render :partial => 'notes/popup_new', :locals => {:chart => @chart, :note => Note.new}
   %p
-    - unless @notes.empty?
+    - unless @notes.blank?
       - @notes.sort_by(&:date).reverse.each do |note|
         %p{:style => "margin-top: 2px; margin-bottom: 1px;"}= note.date.strftime("%m/%d/%Y")
         %p{:style => "margin-top: 2px; margin-bottom: 1px;"}= link_to truncate(note.details, :length => 80), '#', :rel => "#note_" + note.id.to_s, :title => "View Chart Note details", :class => "popup tooltip"

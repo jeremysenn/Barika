@@ -101,7 +101,7 @@ form .field, form .actions {
 }
 
 /* BOXES */
-.notes_box {background-color: #EFEFEF; float:right; width:60%; padding:20px 20px 0px 20px; text-align:left; border:1px solid #b3b3b3; display:block;}
+.notes_box {overflow:auto; background-color: #EFEFEF; float:right; width:60%; padding:20px 20px 0px 20px; text-align:left; border:1px solid #b3b3b3; display:block;}
 .tags_box {background-color: #EFEFEF; float:left; width:20%; padding:20px 20px 0px 20px; text-align:left; border:1px solid #b3b3b3; display:block;}
 
 /* POPUP OVERLAY WINDOWS */

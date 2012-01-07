@@ -8,11 +8,14 @@ class ChartsController < ApplicationController
     @tags = Tag.all.sort_by{|t| t.name.downcase}
     #@tags = Tag.all.sort_by(&:name)
     #@notes = Note.where("chart_id = @chart.id").page(params[:page])
-    unless params[:tag].blank?
+    if not params[:tag].blank? #LOOK FOR SINGLE TAG TO FILTER NOTES ON
       tag = Tag.find_by_name(params[:tag])
-      @notes = Kaminari.paginate_array(@chart.notes.find(:all, :conditions => ['tags.id = ?', tag.id], :joins => [:tags])).page(params[:page]).per(2)
-    else
-      @notes = @chart.notes.page(params[:page]).per(2)
+      @notes = Kaminari.paginate_array(@chart.notes.find(:all, :conditions => ['tags.id = ?', tag.id], :joins => [:tags])).page(params[:page]).per(6)
+    elsif not params[:tags].blank? #LOOK FOR MULTIPLE TAGS TO FILTER NOTES ON
+      filter_tags= Tag.find(:all, :conditions => {:id => params[:tags]})
+      @notes = Kaminari.paginate_array(@chart.notes.find(:all, :joins => :tags, :conditions => {:tags => {:id => filter_tags}})).page(params[:page]).per(6)
+    else #SHOW ALL NOTES
+      @notes = @chart.notes.page(params[:page]).per(6)
     end
   end
 
@@ -51,5 +54,9 @@ class ChartsController < ApplicationController
     @chart = Chart.find(params[:id])
     @chart.destroy
     redirect_to charts_url, :notice => "Successfully destroyed chart."
+  end
+
+  def tag_filter
+
   end
 end

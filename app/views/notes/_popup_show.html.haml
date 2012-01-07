@@ -1,21 +1,25 @@
 .popup_overlay_450_225{:id => "note_#{note.id}"}
-  %p
-    %strong Client:
-    = note.chart.client.full_name
-  %p
-    %strong Date:
-    = note.date.strftime("%m/%d/%Y")
-  %p
-    %strong Details:
-    = note.details
-  %p
-    %strong Tags:
-    - unless note.tags.blank?
-      %ul{:id => 'tags'}
-        - note.tags.each do |tag|
-          %li= tag.name
-    - else
-      None
+  .show{:id => "show_#{note.id}"}
+    %p
+      %strong Client:
+      = note.chart.client.full_name
+    %p
+      %strong Date:
+      = note.date.strftime("%m/%d/%Y")
+    %p
+      %strong Details:
+      = note.details
+    %p
+      %strong Tags:
+      - unless note.tags.blank?
+        %ul{:id => 'tags'}
+          - note.tags.each do |tag|
+            %li= tag.name
+      - else
+        None
 
-  %p
-    = link_to "Edit", edit_note_path(note)
+    %p
+      =# link_to "Edit", edit_note_path(note), :rel => "#popup_edit", :title => "Edit Chart Note", :class => 'tooltip popup'
+      = link_to_function "Edit", "$('#show_#{ note.id }').hide(); $('#edit_#{ note.id }').show();"
+  .edit{:id => "edit_#{note.id}", :style => "display: none;"}
+    = render :partial => 'notes/popup_edit', :locals => {:chart => note.chart, :note => note}
