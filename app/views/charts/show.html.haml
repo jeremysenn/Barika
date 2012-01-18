@@ -1,4 +1,8 @@
-%h1{:style => "text-align: center"}= @chart.client.full_name + " " + "Chart"
+%h3
+  = @chart.client.full_name + " " + "Chart"
+  - unless @chart.client.dob.blank?
+    %br
+    = "DOB: #{@chart.client.dob.strftime("%m/%d/%Y")}"
 .tags_box
   #right{:style => "text-align: right;"}
     = link_to_function "Multiple Tags &#8711;".html_safe, "$('#multiple_tags').toggle(); $(this).toggle();", :id => 'down_arrow', :title => 'Show multiple tag filter', :class => 'tooltip'
