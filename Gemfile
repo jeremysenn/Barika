@@ -7,7 +7,7 @@ gem 'rails', '3.1.3'
 
 gem "nifty-generators"
 #gem 'pg' #FOR POSTGRES
-gem 'PostgreSQL'
+gem 'postgres'
 gem 'haml'
 gem 'kaminari' #FOR PAGINATION
 gem 'execjs'
