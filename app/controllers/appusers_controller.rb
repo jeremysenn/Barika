@@ -1,4 +1,7 @@
 class AppusersController < ApplicationController
+
+  before_filter :login_required, :except => []
+
   def index
     @appusers = Appuser.all
   end

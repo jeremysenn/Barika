@@ -12,6 +12,16 @@
     = f.text_area :details, :cols => 55, :rows => 10
   %p
     = f.label :tag_names, "Tags"
-    = f.text_field :tag_names, :id => 'tags'
+    = f.text_field :tag_names, :id => "tags_#{note.id}"
   %p
     = f.submit
+
+=# stylesheet_link_tag "jquery.tagit.css"
+= javascript_include_tag "http://ajax.googleapis.com/ajax/libs/jquery/1.4/jquery.min.js"
+= javascript_include_tag "https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.12/jquery-ui.min.js"
+= javascript_include_tag "tag-it.js"
+
+%script
+  var tags = "#{@tag_list.join(',')}";
+  $('#tags_#{note.id}').tagit({availableTags: tags.split(',')});
+  //$(document).ready(function() { $("#tags_#{note.id}").tagsInput({autocomplete_url:tags.split(',')}); });

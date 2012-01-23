@@ -1,4 +1,4 @@
-- Client.all.sort_by(&:last).each do |client|
+- current_user.clients.all.sort_by(&:last).each do |client|
   - unless client.chart.blank?
     %p= link_to client.full_name, client.chart
   - else

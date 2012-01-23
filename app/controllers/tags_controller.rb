@@ -1,6 +1,14 @@
 class TagsController < ApplicationController
+
+  before_filter :login_required, :except => []
+
   def index
     @tags = Tag.all
+    respond_to do |format|
+     format.html
+     format.json { render :json => @tags }
+    end
+
   end
 
   def show
@@ -38,4 +46,10 @@ class TagsController < ApplicationController
     @tag.destroy
     redirect_to tags_url, :notice => "Successfully destroyed tag."
   end
+
+  def autocomplete
+     tags = Tag.all
+     render :json => tags
+  end
+
 end

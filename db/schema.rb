@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111227000315) do
+ActiveRecord::Schema.define(:version => 20120121181216) do
 
   create_table "accountlineitem", :id => false, :force => true do |t|
     t.integer  "id"
@@ -394,6 +394,7 @@ ActiveRecord::Schema.define(:version => 20111227000315) do
     t.integer  "modifiedby"
     t.string   "preferred",       :limit => 1
     t.string   "nomassmailing",   :limit => 1
+    t.integer  "user_id"
   end
 
   create_table "client_prospectonly", :id => false, :force => true do |t|

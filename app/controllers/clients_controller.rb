@@ -1,4 +1,7 @@
 class ClientsController < ApplicationController
+
+  before_filter :login_required, :except => []
+
   def index
     @clients = Client.all
   end

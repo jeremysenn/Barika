@@ -108,7 +108,7 @@ form .field, form .actions {
 .popup_overlay {
 
 	/* must be initially hidden */
-	display:none;
+	display:block;
 
 	/* place overlay on top of other elements */
 	z-index:10000;
@@ -158,6 +158,7 @@ form .field, form .actions {
   /* CSS3 styling for latest browsers */
   -moz-box-shadow:0 0 90px 5px #000;
   -webkit-box-shadow: 0 0 90px #000;
+
 }
 
 .popup_overlay_450_225 .close {
@@ -169,3 +170,10 @@ form .field, form .actions {
   height:35px;
   width:35px;
 }
+
+.little_grey_box{float: right; text-align: right; font-size:.875em; width:100px; background-color: #EFEFEF; padding: 8px; border: 1px solid #b3b3b3; margin: 10px 0}
+.little_grey_box h3 {font-weight: bold; color:#00323C}
+.little_grey_box p{font-size:.875em; display:block; margin:0}
+.little_grey_box label{font-size:.875em; color:#333}
+.little_grey_box button[type=submit]{padding:8px; font-size:1em; margin:0}
+.little_grey_box input.title{width:100%}

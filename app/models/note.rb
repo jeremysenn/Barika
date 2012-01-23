@@ -27,7 +27,7 @@ class Note < ActiveRecord::Base
   def assign_tags
     if @tag_names
       self.tags = @tag_names.split(',').map do |name|
-        Tag.find_or_create_by_name(name)
+        Tag.find_or_create_by_name(name.downcase)
       end
     end
   end

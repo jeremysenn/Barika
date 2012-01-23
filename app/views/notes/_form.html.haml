@@ -23,5 +23,11 @@
   %p
     = f.submit
 
+= javascript_include_tag "http://ajax.googleapis.com/ajax/libs/jquery/1.4/jquery.min.js"
+= javascript_include_tag "https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.12/jquery-ui.min.js"
+= javascript_include_tag "tag-it.js"
+
 %script
-  $(document).ready(function() { $("#tags").tagsInput(); });
+  var tags = "#{@tags.join(',')}";
+  $('#tags').tagit({availableTags: tags.split(',')});
+  //$(document).ready(function() { $("#tags").tagsInput({autocomplete_url:availableTags.split(',')}); });
