@@ -11,7 +11,8 @@ development:
   host: localhost
   database: db_sa
   pool: 5
-  username: pcr
+#  username: pcr
+  username: imaginears
   password:
 
 # Warning: The database defined as "test" will be erased and
