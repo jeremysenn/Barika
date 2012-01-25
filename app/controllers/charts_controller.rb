@@ -29,6 +29,7 @@ class ChartsController < ApplicationController
     @chart.client = Client.find(params[:client]) unless params[:client].blank?
 
     1.times{@chart.notes.build}
+    @tags = current_user.tags.all.sort_by(&:name).collect{|t| t.name}.uniq unless current_user.tags.all.blank?
   end
 
   def create
