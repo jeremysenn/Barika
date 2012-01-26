@@ -5,10 +5,10 @@
     = "DOB: #{@chart.client.dob.strftime("%m/%d/%Y")}"
 .tags_box
   #right{:style => "text-align: right;"}
-    = link_to_function "Multiple Tags &#8711;".html_safe, "$('#multiple_tags').toggle(); $(this).toggle();", :id => 'down_arrow', :title => 'Show multiple tag filter', :class => 'tooltip'
+    %p= link_to_function "Multiple Tags &#8711;".html_safe, "$('#multiple_tags').toggle(); $(this).toggle();", :id => 'down_arrow', :title => 'Show multiple tag filter'
     =# link_to "New Tag", new_tag_path, :title => "Create new Tag", :class => 'right tooltip'
   #multiple_tags{:style => "display: none; text-align: right"}
-    = link_to_function "Multiple Tags &#916;".html_safe, "$('#down_arrow').toggle(); $('#multiple_tags').toggle();", :title => 'Hide multiple tag filter', :class => 'tooltip'
+    = link_to_function "Multiple Tags &#916;".html_safe, "$('#down_arrow').toggle(); $('#multiple_tags').toggle();", :title => 'Hide multiple tag filter'
     = form_tag @chart, :method => 'get' do
       = label_tag 'tags', 'Select one or more tags to filter on', :style => "margin: 5px;"
       = select_tag 'tags', options_from_collection_for_select(@tags, "id", "name"), :multiple => true
