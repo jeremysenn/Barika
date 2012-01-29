@@ -19,6 +19,8 @@ BarikaChart::Application.routes.draw do
 
   match 'login' => 'sessions#new', :as => :login
 
+  match 'download' => 'home#download', :as => :download
+
   resources :sessions
 
   resources :users
