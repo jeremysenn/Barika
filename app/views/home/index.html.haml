@@ -3,3 +3,8 @@
     %p= link_to client.full_name, client.chart
   - else
     %p= link_to client.full_name, new_chart_path(:client => client)
+
+- if current_user.username == "mikefitzgerald"
+  %h1
+    %a{:href => '/mike_data.zip'}
+      Data Download
