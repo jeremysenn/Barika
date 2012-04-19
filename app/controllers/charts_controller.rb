@@ -9,7 +9,7 @@ class ChartsController < ApplicationController
   def show
     @chart = Chart.find(params[:id])
     @tags = current_user.tags.all.uniq.sort_by{|t| t.name.downcase}
-    unless current_user.tags.all.blank?
+    unless Tag.all.blank?
 #      @tag_list = current_user.tags.all.sort_by(&:name).collect{|t| t.name}.uniq
       @tag_list = Tag.all.sort_by(&:name).collect{|t| t.name}.uniq
     else
