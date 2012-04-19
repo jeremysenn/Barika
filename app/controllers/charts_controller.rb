@@ -9,7 +9,11 @@ class ChartsController < ApplicationController
   def show
     @chart = Chart.find(params[:id])
     @tags = current_user.tags.all.uniq.sort_by{|t| t.name.downcase}
-    @tag_list = current_user.tags.all.sort_by(&:name).collect{|t| t.name}.uniq unless current_user.tags.all.blank?
+    unless current_user.tags.all.blank?
+      @tag_list = current_user.tags.all.sort_by(&:name).collect{|t| t.name}.uniq
+    else
+      @tag_list = []
+    end
     #@tags = Tag.all.sort_by(&:name)
     #@notes = Note.where("chart_id = @chart.id").page(params[:page])
     if not params[:tag].blank? #LOOK FOR SINGLE TAG TO FILTER NOTES ON
