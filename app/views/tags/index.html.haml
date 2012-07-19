@@ -8,6 +8,10 @@
       %td= tag.name
       %td= link_to 'Show', tag
       %td= link_to 'Edit', edit_tag_path(tag)
-      %td= link_to 'Destroy', tag, :confirm => 'Are you sure?', :method => :delete
+      %td=# link_to 'Destroy', tag, :confirm => 'Are you sure?', :method => :delete
+      %td= button_to 'Destroy', tag, :confirm => 'Are you sure?', :class => 'delete-alert', :method => :delete
 
 %p= link_to "New Tag", new_tag_path
+
+%script
+  $('.delete-alert').click(function() { return confirm("Delete this item?");});
