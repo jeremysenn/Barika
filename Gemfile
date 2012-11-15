@@ -12,6 +12,7 @@ gem 'haml'
 gem 'kaminari' #FOR PAGINATION
 gem 'execjs'
 gem 'therubyracer'
+gem 'unicorn', '1.1.5', :require => false
 
 # Gems used only for assets and not required
 # in production environments by default.

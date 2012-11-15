@@ -120,6 +120,8 @@ GEM
     uglifier (1.2.0)
       execjs (>= 0.3.0)
       multi_json (>= 1.0.2)
+    unicorn (1.1.5)
+      rack
 
 PLATFORMS
   ruby
@@ -139,3 +141,4 @@ DEPENDENCIES
   therubyracer
   turn (~> 0.8.3)
   uglifier (>= 1.0.3)
+  unicorn (= 1.1.5)
