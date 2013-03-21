@@ -19,10 +19,10 @@ class ChartsController < ApplicationController
     #@notes = Note.where("chart_id = @chart.id").page(params[:page])
     if not params[:tag].blank? #LOOK FOR SINGLE TAG TO FILTER NOTES ON
       tag = Tag.find_by_name(params[:tag])
-      @notes = Kaminari.paginate_array(@chart.notes.find(:all, :conditions => ['tags.id = ?', tag.id], :joins => [:tags])).page(params[:page]).per(6)
+      @notes = Kaminari.paginate_array(@chart.notes.sort_by(&:date).reverse.find(:all, :conditions => ['tags.id = ?', tag.id], :joins => [:tags])).page(params[:page]).per(6)
     elsif not params[:tags].blank? #LOOK FOR MULTIPLE TAGS TO FILTER NOTES ON
       filter_tags= Tag.find(:all, :conditions => {:id => params[:tags]})
-      @notes = Kaminari.paginate_array(@chart.notes.find(:all, :joins => :tags, :conditions => {:tags => {:id => filter_tags}})).page(params[:page]).per(6)
+      @notes = Kaminari.paginate_array(@chart.notes.sort_by(&:date).reverse.find(:all, :joins => :tags, :conditions => {:tags => {:id => filter_tags}})).page(params[:page]).per(6)
     else #SHOW ALL NOTES
       @notes = Kaminari.paginate_array(@chart.notes.sort_by(&:date).reverse).page(params[:page]).per(6)
     end
