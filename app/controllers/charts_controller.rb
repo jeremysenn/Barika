@@ -13,7 +13,7 @@ class ChartsController < ApplicationController
     unless current_user.tags.all.blank?
       @tag_list = current_user.tags.all.sort_by(&:name).collect{|t| t.name}.uniq
     else
-      @tag_list = []
+      @tag_list = Tag.all.sort_by(&:name).collect{|t| t.name}.uniq
     end
     #@tags = Tag.all.sort_by(&:name)
     #@notes = Note.where("chart_id = @chart.id").page(params[:page])

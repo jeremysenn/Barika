@@ -5,6 +5,11 @@
   = @tag.name
 
 %p
+  %strong Patients:
+- @tag.notes.each do |note|
+  %p= note.chart.client.full_name
+
+%p
   = link_to "Edit", edit_tag_path(@tag)
   |
   = link_to "Destroy", @tag, :confirm => 'Are you sure?', :method => :delete
