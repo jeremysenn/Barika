@@ -8,7 +8,7 @@
   = @note.date.strftime("%m/%d/%Y")
 %p
   %strong Details:
-  = simple_format(raw @note.details)
+  = @note.details
 %p
   %strong Tags:
   %ul{:id => 'tags'}
