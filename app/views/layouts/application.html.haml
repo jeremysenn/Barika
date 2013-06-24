@@ -25,6 +25,7 @@
         .little_grey_box.float_right.round
           %p= link_to current_user.username, edit_user_path(current_user)
           %p= link_to 'Clients', root_path, :title => "Client list" unless current_user.clients.blank?
+          %p= link_to 'Tags', tags_path, :title => "Tag list"
           %p= link_to "Log out", logout_path, :confirm => "Are you sure you want to log out?", :title => "Log out", :class => "tool-tip"
       - flash.each do |name, msg|
         %p= content_tag :div, msg, :id => "flash_#{name}"
