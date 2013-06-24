@@ -140,7 +140,6 @@ form .field, form .actions {
 
   /* initially hidden */
   display:none;
-  overflow:scroll;
 
   padding: 15px;
   text-align: left;

@@ -8,7 +8,7 @@
       = note.date.strftime("%m/%d/%Y")
     %p
       %strong Details:
-      = simple_format(note.details)
+      =h simple_format(note.details)
     %p
       %strong Tags:
       - unless note.tags.blank?

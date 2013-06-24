@@ -27,7 +27,8 @@ class NotesController < ApplicationController
 
   def edit
     @note = Note.find(params[:id])
-    @tags = current_user.tags.all.sort_by(&:name).collect{|t| t.name}.uniq unless current_user.tags.all.blank?
+#    @tags = current_user.tags.all.sort_by(&:name).collect{|t| t.name}.uniq unless current_user.tags.all.blank?
+    @tags = Tag.all.uniq.sort_by{|t| t.name.downcase}
   end
 
   def update
