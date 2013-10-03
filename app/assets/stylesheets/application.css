@@ -6,6 +6,122 @@
  *= require_tree . 
 */
 
+/*** TWITTER BOOTSTRAP CSS ***/
+/*body {
+  background-color: #4b7399;
+  font-family: Verdana, Helvetica, Arial;
+  font-size: 14px; }
+
+a {
+  color: blue; }
+  a img {
+    border: none; }
+
+.clear {
+  clear: both;
+  height: 0;
+  overflow: hidden; }
+
+#container {
+  width: 75%;
+  margin: 0 auto;
+  background: white;
+  padding: 20px 40px;
+  border: solid 1px black;
+  margin-top: 20px; }
+
+#flash_notice,
+#flash_error,
+#flash_alert {
+  padding: 5px 8px;
+  margin: 10px 0; }
+
+.fieldWithErrors {
+  display: inline; }
+
+.error_messages {
+  width: 400px;
+  border: 2px solid #cf0000;
+  padding: 0;
+  padding-bottom: 12px;
+  margin-bottom: 20px;
+  background-color: #f0f0f0;
+  font-size: 12px; }
+  .error_messages h2 {
+    text-align: left;
+    padding: 5px 5px 5px 15px;
+    margin: 0;
+    font-weight: bold;
+    font-size: 12px;
+    background-color: #cc0000;
+    color: white; }
+  .error_messages p {
+    margin: 8px 10px; }
+  .error_messages ul {
+    margin: 0; }
+
+table {
+  border: thin solid black;
+  border-collapse: collapse;
+}
+table td, tr, th { text-align: left;  border: thin solid #cccccc; padding: 10px;}
+
+body {
+  padding-top: 40px;
+  padding-bottom: 40px;
+  background-color: #f5f5f5;
+}
+
+.form-signin {
+  max-width: 300px;
+  padding: 19px 29px 29px;
+  margin: 0 auto 20px;
+  background-color: #fff;
+  border: 1px solid #e5e5e5;
+  -webkit-border-radius: 5px;
+     -moz-border-radius: 5px;
+          border-radius: 5px;
+  -webkit-box-shadow: 0 1px 2px rgba(0,0,0,.05);
+     -moz-box-shadow: 0 1px 2px rgba(0,0,0,.05);
+          box-shadow: 0 1px 2px rgba(0,0,0,.05);
+}
+.form-signin .form-signin-heading,
+.form-signin .checkbox {
+  margin-bottom: 10px;
+}
+.form-signin input[type="text"],
+.form-signin input[type="password"] {
+  font-size: 16px;
+  height: auto;
+  margin-bottom: 15px;
+  padding: 7px 9px;
+}
+
+ Custom container 
+.container-narrow {
+  margin: 0 auto;
+  max-width: 700px;
+}
+.container-narrow > hr {
+  margin: 30px 0;
+}
+
+ Main marketing message and sign up button 
+.jumbotron {
+  margin: 60px 0;
+  text-align: center;
+}
+.jumbotron h1 {
+  font-size: 72px;
+  line-height: 1;
+}
+.jumbotron .btn {
+  font-size: 21px;
+  padding: 14px 24px;
+}*/
+
+
+/*** OLD CSS ***/
 html, body {
   background-color: #4B7399;
   font-family: Verdana, Helvetica, Arial;
@@ -100,32 +216,32 @@ form .field, form .actions {
   text-align: right;
 }
 
-/* BOXES */
+ BOXES 
 .notes_box {overflow:auto; background-color: #EFEFEF; float:right; width:60%; padding:20px 20px 0px 20px; text-align:left; border:1px solid #b3b3b3; display:block;}
 .tags_box {background-color: #EFEFEF; float:left; width:20%; padding:20px 20px 0px 20px; text-align:left; border:1px solid #b3b3b3; display:block;}
 
-/* POPUP OVERLAY WINDOWS */
+ POPUP OVERLAY WINDOWS 
 .popup_overlay {
 
-	/* must be initially hidden */
+	 must be initially hidden 
 	display:block;
 
-	/* place overlay on top of other elements */
+	 place overlay on top of other elements 
 	z-index:10000;
 
-	/* styling */
+	 styling 
 	background-color:#333;
 
 	width:675px;
 	min-height:200px;
 	border:1px solid #666;
 
-	/* CSS3 styling for latest browsers */
+	 CSS3 styling for latest browsers 
 	-moz-box-shadow:0 0 90px 5px #000;
 	-webkit-box-shadow: 0 0 90px #000;
 }
 
-/* close button positioned on upper right corner */
+ close button positioned on upper right corner 
 .popup_overlay .close {
 	background-image:url('close.png');
 	position:absolute;
@@ -138,16 +254,16 @@ form .field, form .actions {
 
 .popup_overlay_450_225 {
 
-  /* initially hidden */
+   initially hidden 
   display:none;
 
   padding: 15px;
   text-align: left;
 
-  /* place overlay on top of other elements */
+   place overlay on top of other elements 
   z-index:10000;
 
-  /* styling */
+   styling 
   background-color:#4B7399;
   color:#ffffff;
 
@@ -155,7 +271,7 @@ form .field, form .actions {
   min-height:225px;
   border:1px solid #666;
 
-  /* CSS3 styling for latest browsers */
+   CSS3 styling for latest browsers 
   -moz-box-shadow:0 0 90px 5px #000;
   -webkit-box-shadow: 0 0 90px #000;
 
