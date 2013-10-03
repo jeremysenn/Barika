@@ -1,78 +1,105 @@
-- title "Client"
+- model_class = Client
+.page-header
+  %h1=t '.title', :default => model_class.model_name.human
 
 %p
-  %strong Clientid:
+  %strong= model_class.human_attribute_name(:clientid) + ':'
+  %br
   = @client.clientid
 %p
-  %strong Threadid:
+  %strong= model_class.human_attribute_name(:threadid) + ':'
+  %br
   = @client.threadid
 %p
-  %strong Nick:
+  %strong= model_class.human_attribute_name(:nick) + ':'
+  %br
   = @client.nick
 %p
-  %strong Prefix:
+  %strong= model_class.human_attribute_name(:prefix) + ':'
+  %br
   = @client.prefix
 %p
-  %strong First:
+  %strong= model_class.human_attribute_name(:first) + ':'
+  %br
   = @client.first
 %p
-  %strong Middle:
+  %strong= model_class.human_attribute_name(:middle) + ':'
+  %br
   = @client.middle
 %p
-  %strong Last:
+  %strong= model_class.human_attribute_name(:last) + ':'
+  %br
   = @client.last
 %p
-  %strong Suffix:
+  %strong= model_class.human_attribute_name(:suffix) + ':'
+  %br
   = @client.suffix
 %p
-  %strong Maritalstatusid:
+  %strong= model_class.human_attribute_name(:maritalstatusid) + ':'
+  %br
   = @client.maritalstatusid
 %p
-  %strong Statusid:
+  %strong= model_class.human_attribute_name(:statusid) + ':'
+  %br
   = @client.statusid
 %p
-  %strong Dob:
+  %strong= model_class.human_attribute_name(:dob) + ':'
+  %br
   = @client.dob
 %p
-  %strong Anniversary:
+  %strong= model_class.human_attribute_name(:anniversary) + ':'
+  %br
   = @client.anniversary
 %p
-  %strong Deceased:
+  %strong= model_class.human_attribute_name(:deceased) + ':'
+  %br
   = @client.deceased
 %p
-  %strong Etr:
+  %strong= model_class.human_attribute_name(:etr) + ':'
+  %br
   = @client.etr
 %p
-  %strong Ssn:
+  %strong= model_class.human_attribute_name(:ssn) + ':'
+  %br
   = @client.ssn
 %p
-  %strong Gender:
+  %strong= model_class.human_attribute_name(:gender) + ':'
+  %br
   = @client.gender
 %p
-  %strong Spousename:
+  %strong= model_class.human_attribute_name(:spousename) + ':'
+  %br
   = @client.spousename
 %p
-  %strong Created:
+  %strong= model_class.human_attribute_name(:created) + ':'
+  %br
   = @client.created
 %p
-  %strong Createdby:
+  %strong= model_class.human_attribute_name(:createdby) + ':'
+  %br
   = @client.createdby
 %p
-  %strong Modified:
+  %strong= model_class.human_attribute_name(:modified) + ':'
+  %br
   = @client.modified
 %p
-  %strong Modifiedby:
+  %strong= model_class.human_attribute_name(:modifiedby) + ':'
+  %br
   = @client.modifiedby
 %p
-  %strong Preferred:
+  %strong= model_class.human_attribute_name(:preferred) + ':'
+  %br
   = @client.preferred
 %p
-  %strong Nomassmailing:
+  %strong= model_class.human_attribute_name(:nomassmailing) + ':'
+  %br
   = @client.nomassmailing
-
 %p
-  = link_to "Edit", edit_client_path(@client)
-  |
-  = link_to "Destroy", @client, :confirm => 'Are you sure?', :method => :delete
-  |
-  = link_to "View All", clients_path
+  %strong= model_class.human_attribute_name(:user_id) + ':'
+  %br
+  = @client.user_id
+
+.form-actions
+  = link_to t('.back', :default => t("helpers.links.back")), clients_path, :class => 'btn'
+  = link_to t('.edit', :default => t("helpers.links.edit")), edit_client_path(@client), :class => 'btn'
+  = link_to t('.destroy', :default => t("helpers.links.destroy")), client_path(@client), :method => "delete", :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) }, :class => 'btn btn-danger'

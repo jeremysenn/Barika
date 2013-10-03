@@ -1,31 +1,65 @@
-- title "Clients"
-
-%table
-  %tr
-    %th Clientid
-    %th Nick
-    %th First
-    %th Last
-    %th Dob
-    %th Gender
-    %th Created
-    %th Createdby
-    %th Modified
-    %th Modifiedby
-  - for client in @clients
+- model_class = Client
+.page-header
+  %h1= "Patients"
+%table.table.table-striped
+  %thead
     %tr
-      %td= client.clientid
-      %td= client.nick
-      %td= client.first
-      %td= client.last
-      %td= client.dob
-      %td= client.gender
-      %td= client.created
-      %td= client.createdby
-      %td= client.modified
-      %td= client.modifiedby
-      %td= link_to 'Show', client
-      %td= link_to 'Edit', edit_client_path(client)
-      %td= link_to 'Destroy', client, :confirm => 'Are you sure?', :method => :delete
+      %th= model_class.human_attribute_name(:id)
+      %th= model_class.human_attribute_name(:clientid)
+      %th= model_class.human_attribute_name(:threadid)
+      %th= model_class.human_attribute_name(:nick)
+      %th= model_class.human_attribute_name(:prefix)
+      %th= model_class.human_attribute_name(:first)
+      %th= model_class.human_attribute_name(:middle)
+      %th= model_class.human_attribute_name(:last)
+      %th= model_class.human_attribute_name(:suffix)
+      %th= model_class.human_attribute_name(:maritalstatusid)
+      %th= model_class.human_attribute_name(:statusid)
+      %th= model_class.human_attribute_name(:dob)
+      %th= model_class.human_attribute_name(:anniversary)
+      %th= model_class.human_attribute_name(:deceased)
+      %th= model_class.human_attribute_name(:etr)
+      %th= model_class.human_attribute_name(:ssn)
+      %th= model_class.human_attribute_name(:gender)
+      %th= model_class.human_attribute_name(:spousename)
+      %th= model_class.human_attribute_name(:created)
+      %th= model_class.human_attribute_name(:createdby)
+      %th= model_class.human_attribute_name(:modified)
+      %th= model_class.human_attribute_name(:modifiedby)
+      %th= model_class.human_attribute_name(:preferred)
+      %th= model_class.human_attribute_name(:nomassmailing)
+      %th= model_class.human_attribute_name(:user_id)
+      %th=t '.actions', :default => t("helpers.actions")
+  %tbody
+    - @clients.each do |client|
+      %tr
+        %td= link_to client.id, client_path(client)
+        %td= client.clientid
+        %td= client.threadid
+        %td= client.nick
+        %td= client.prefix
+        %td= client.first
+        %td= client.middle
+        %td= client.last
+        %td= client.suffix
+        %td= client.maritalstatusid
+        %td= client.statusid
+        %td= client.dob
+        %td= client.anniversary
+        %td= client.deceased
+        %td= client.etr
+        %td= client.ssn
+        %td= client.gender
+        %td= client.spousename
+        %td= client.created
+        %td= client.createdby
+        %td= client.modified
+        %td= client.modifiedby
+        %td= client.preferred
+        %td= client.nomassmailing
+        %td= client.user_id
+        %td
+          = link_to t('.edit', :default => t("helpers.links.edit")), edit_client_path(client), :class => 'btn btn-mini'
+          = link_to t('.destroy', :default => t("helpers.links.destroy")), client_path(client), :method => :delete, :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) }, :class => 'btn btn-mini btn-danger'
 
-%p= link_to "New Client", new_client_path
+= link_to t('.new', :default => t("helpers.links.new")), new_client_path, :class => 'btn btn-primary'

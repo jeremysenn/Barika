@@ -1,13 +1,21 @@
-- title "Charts"
-
-%table
-  %tr
-    %th Client
-  - for chart in @charts
+- model_class = Chart
+.page-header
+  %h1=t '.title', :default => model_class.model_name.human.pluralize
+%table.table.table-striped
+  %thead
     %tr
-      %td= chart.client.full_name
-      %td= link_to 'Show', chart
-      %td= link_to 'Edit', edit_chart_path(chart)
-      %td= link_to 'Destroy', chart, :confirm => 'Are you sure?', :method => :delete
+      %th= model_class.human_attribute_name(:id)
+      %th= "Patient"
+      %th= model_class.human_attribute_name(:created_at)
+      %th=t '.actions', :default => t("helpers.actions")
+  %tbody
+    - @charts.each do |chart|
+      %tr
+        %td= link_to chart.id, chart_path(chart)
+        %td= chart.client.full_name
+        %td=l chart.created_at
+        %td
+          = link_to t('.edit', :default => t("helpers.links.edit")), edit_chart_path(chart), :class => 'btn btn-mini'
+          = link_to t('.destroy', :default => t("helpers.links.destroy")), chart_path(chart), :method => :delete, :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) }, :class => 'btn btn-mini btn-danger'
 
-%p= link_to "New Chart", new_chart_path
+= link_to t('.new', :default => t("helpers.links.new")), new_chart_path, :class => 'btn btn-primary'

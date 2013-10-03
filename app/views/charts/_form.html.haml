@@ -1,11 +1,25 @@
-= form_for @chart do |f|
-  = f.error_messages
-  %p
-    = f.label :client_id
-    %br
-    = f.select :client_id, Client.all.collect {|c| [ c.full_name, c.id ] }, {:include_blank => false}
-  %p
-  = f.fields_for :notes do |builder|
-    = render "note_fields", :f => builder
-  %p
-    = f.submit
+= form_for @chart, :html => { :class => 'form-horizontal' } do |f|
+  .control-group
+    = f.label :client_id, :class => 'control-label'
+    .controls
+      = f.select :client_id, current_user.clients.sort_by{|c| [c.last]}.collect{|c| [ c.full_name, c.id ] }
+  = f.fields_for :notes do |note_form|
+    .control-group
+      = note_form.label :date, :class => 'control-label'
+      .controls
+        = note_form.date_select :date
+    .control-group
+      = note_form.label :details, :class => 'control-label'
+      .controls
+        = note_form.text_area :details, :class => 'text_area'
+    .control-group
+      = note_form.label :tag_names, :class => 'control-label'
+      .controls
+        = note_form.text_field :tag_names, :class => 'text_field', :id => 'tags'
+  .form-actions
+    = f.submit nil, :class => 'btn btn-primary'
+    = link_to t('.cancel', :default => t("helpers.links.cancel")), charts_path, :class => 'btn'
+
+%script
+  var tags = "#{@tags.join(',')}";
+  $('#tags').tagit({availableTags: tags.split(',')});

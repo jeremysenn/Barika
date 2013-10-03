@@ -147,7 +147,7 @@ a:hover {
   overflow: hidden;
 }
 
-#container {
+/*#container {
   width: 75%;
   margin: 0 auto;
   background-color: #FFF;
@@ -155,7 +155,7 @@ a:hover {
   border: solid 1px black;
   margin-top: 20px;
   overflow:hidden;
-}
+}*/
 
 #flash_notice, #flash_error, #flash_alert {
   padding: 5px 8px;

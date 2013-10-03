@@ -1,96 +1,100 @@
-= form_for @client do |f|
-  = f.error_messages
-  %p
-    = f.label :clientid
-    %br
-    = f.number_field :clientid
-  %p
-    = f.label :threadid
-    %br
-    = f.number_field :threadid
-  %p
-    = f.label :nick
-    %br
-    = f.text_field :nick
-  %p
-    = f.label :prefix
-    %br
-    = f.text_field :prefix
-  %p
-    = f.label :first
-    %br
-    = f.text_field :first
-  %p
-    = f.label :middle
-    %br
-    = f.text_field :middle
-  %p
-    = f.label :last
-    %br
-    = f.text_field :last
-  %p
-    = f.label :suffix
-    %br
-    = f.text_field :suffix
-  %p
-    = f.label :maritalstatusid
-    %br
-    = f.number_field :maritalstatusid
-  %p
-    = f.label :statusid
-    %br
-    = f.number_field :statusid
-  %p
-    = f.label :dob
-    %br
-    = f.date_select :dob
-  %p
-    = f.label :anniversary
-    %br
-    = f.date_select :anniversary
-  %p
-    = f.label :deceased
-    %br
-    = f.text_field :deceased
-  %p
-    = f.label :etr
-    %br
-    = f.text_field :etr
-  %p
-    = f.label :ssn
-    %br
-    = f.text_field :ssn
-  %p
-    = f.label :gender
-    %br
-    = f.text_field :gender
-  %p
-    = f.label :spousename
-    %br
-    = f.text_field :spousename
-  %p
-    = f.label :created
-    %br
-    = f.datetime_select :created
-  %p
-    = f.label :createdby
-    %br
-    = f.number_field :createdby
-  %p
-    = f.label :modified
-    %br
-    = f.datetime_select :modified
-  %p
-    = f.label :modifiedby
-    %br
-    = f.number_field :modifiedby
-  %p
-    = f.label :preferred
-    %br
-    = f.text_field :preferred
-  %p
-    = f.label :nomassmailing
-    %br
-    = f.text_field :nomassmailing
-  %p
-    = f.submit
+= form_for @client, :html => { :class => 'form-horizontal' } do |f|
+  .control-group
+    = f.label :clientid, :class => 'control-label'
+    .controls
+      = f.number_field :clientid, :class => 'number_field'
+  .control-group
+    = f.label :threadid, :class => 'control-label'
+    .controls
+      = f.number_field :threadid, :class => 'number_field'
+  .control-group
+    = f.label :nick, :class => 'control-label'
+    .controls
+      = f.text_field :nick, :class => 'text_field'
+  .control-group
+    = f.label :prefix, :class => 'control-label'
+    .controls
+      = f.text_field :prefix, :class => 'text_field'
+  .control-group
+    = f.label :first, :class => 'control-label'
+    .controls
+      = f.text_field :first, :class => 'text_field'
+  .control-group
+    = f.label :middle, :class => 'control-label'
+    .controls
+      = f.text_field :middle, :class => 'text_field'
+  .control-group
+    = f.label :last, :class => 'control-label'
+    .controls
+      = f.text_field :last, :class => 'text_field'
+  .control-group
+    = f.label :suffix, :class => 'control-label'
+    .controls
+      = f.text_field :suffix, :class => 'text_field'
+  .control-group
+    = f.label :maritalstatusid, :class => 'control-label'
+    .controls
+      = f.number_field :maritalstatusid, :class => 'number_field'
+  .control-group
+    = f.label :statusid, :class => 'control-label'
+    .controls
+      = f.number_field :statusid, :class => 'number_field'
+  .control-group
+    = f.label :dob, :class => 'control-label'
+    .controls
+      = f.date_select :dob, :class => 'date_select'
+  .control-group
+    = f.label :anniversary, :class => 'control-label'
+    .controls
+      = f.date_select :anniversary, :class => 'date_select'
+  .control-group
+    = f.label :deceased, :class => 'control-label'
+    .controls
+      = f.text_field :deceased, :class => 'text_field'
+  .control-group
+    = f.label :etr, :class => 'control-label'
+    .controls
+      = f.text_field :etr, :class => 'text_field'
+  .control-group
+    = f.label :ssn, :class => 'control-label'
+    .controls
+      = f.text_field :ssn, :class => 'text_field'
+  .control-group
+    = f.label :gender, :class => 'control-label'
+    .controls
+      = f.text_field :gender, :class => 'text_field'
+  .control-group
+    = f.label :spousename, :class => 'control-label'
+    .controls
+      = f.text_field :spousename, :class => 'text_field'
+  .control-group
+    = f.label :created, :class => 'control-label'
+    .controls
+      = f.datetime_select :created, :class => 'datetime_select'
+  .control-group
+    = f.label :createdby, :class => 'control-label'
+    .controls
+      = f.number_field :createdby, :class => 'number_field'
+  .control-group
+    = f.label :modified, :class => 'control-label'
+    .controls
+      = f.datetime_select :modified, :class => 'datetime_select'
+  .control-group
+    = f.label :modifiedby, :class => 'control-label'
+    .controls
+      = f.number_field :modifiedby, :class => 'number_field'
+  .control-group
+    = f.label :preferred, :class => 'control-label'
+    .controls
+      = f.text_field :preferred, :class => 'text_field'
+  .control-group
+    = f.label :nomassmailing, :class => 'control-label'
+    .controls
+      = f.text_field :nomassmailing, :class => 'text_field'
+  .control-group
+    = f.label :user_id, :class => 'control-label'
+    .controls
+      = f.number_field :user_id, :class => 'number_field'
+  .form-actions
+    = f.submit nil, :class => 'btn btn-primary'
+    = link_to t('.cancel', :default => t("helpers.links.cancel")), clients_path, :class => 'btn'

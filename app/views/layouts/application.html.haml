@@ -4,27 +4,37 @@
   %head
     %title
       = yield(:title) || "Untitled"
+    = favicon_link_tag 'favicon.ico'
+    <!--[if lt IE 9]>
+    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js" type="text/javascript"></script>
+    <![endif]-->
     %meta{"http-equiv"=>"Content-Type", :content=>"text/html; charset=utf-8"}/
     = stylesheet_link_tag "application", "jquery-ui-1.8.6.custom", "jquery.tagit", "jquery.tooltip"
-    = javascript_include_tag "http://ajax.googleapis.com/ajax/libs/jquery/1.4/jquery.min.js"
+    = javascript_include_tag "application"
+    = javascript_include_tag "http://ajax.googleapis.com/ajax/libs/jquery/1.5.2/jquery.min.js"
     = javascript_include_tag "https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.12/jquery-ui.min.js"
     = javascript_include_tag "tag-it.js"
     = javascript_include_tag "jquery.tools.min.js", "jquery.tooltip.pack.js"
     = csrf_meta_tag
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     = yield(:head)
 
   %body
     #container
-      - unless session.blank? or current_user.nil?
-        .little_grey_box.float_right.round
-          %p= link_to current_user.username, edit_user_path(current_user)
-          %p= link_to 'Clients', root_path, :title => "Client list" unless current_user.clients.blank?
-          %p= link_to 'Tags', tags_path, :title => "Tag list"
-          %p= link_to "Log out", logout_path, :confirm => "Are you sure you want to log out?", :title => "Log out", :class => "tool-tip"
       - flash.each do |name, msg|
-        %p= content_tag :div, msg, :id => "flash_#{name}"
+        %div{:class => "alert alert-#{name == :notice ? "success" : "error"}"}
+          <button type="button" class="close" data-dismiss="alert">×</button>
+          = content_tag :div, msg, :id => "flash_#{name}"
 
       - if show_title?
         %h1= yield(:title)
+      .navbar.navbar-fixed-top
+        .navbar-inner
+          .container
+            = render 'layouts/navigation'
 
       = yield
+      #footer
+        .container
+          %p{:class => "muted credit", :style => "text-align:center"}
+            = "Copyright #{Date.today.year}"
