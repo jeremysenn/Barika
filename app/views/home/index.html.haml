@@ -1,6 +1,40 @@
--# current_user.clients.all.sort_by(&:last).each do |client|
-- Client.all.sort_by(&:last).each do |client|
-  - unless client.chart.blank?
-    %p= link_to client.full_name, client.chart
-  - else
-    %p= link_to client.full_name, new_chart_path(:client => client)
+.pagination-centered
+  = form_tag root_path, :class => "form-inline", :method => :get do
+    .input-prepend
+      = text_field_tag :q, nil, :style => 'height:20px; font-size:large;', :id => "prependedInput", :class => 'span5', :value => params[:q]
+    = button_tag(:type => 'submit', :class => 'btn btn-medium btn-success') do
+      %i.icon-search
+
+- if false
+  -# current_user.clients.all.sort_by(&:last).each do |client|
+  - Client.all.sort_by(&:last).each do |client|
+    - unless client.chart.blank?
+      %p= link_to client.full_name, client.chart
+    - else
+      %p= link_to client.full_name, new_chart_path(:client => client)
+- if false
+  .page-header
+    %h3
+      %i.icon-dashboard
+      = "Dashboard"
+  .row-fluid
+    .span3
+      %h4
+        %i.icon-user
+        Patients
+      = render :partial => 'patient_quick_index'
+    .span3
+      %h4
+        %i.icon-list-alt
+        Charts
+      = render :partial => 'charts_quick_index'
+    .span3
+      %h4
+        %i.icon-pencil
+        Notes
+      = render :partial => 'notes_quick_index'
+    .span3
+      %h4
+        %i.icon-tags
+        Tags
+      = render :partial => 'tags_quick_index'

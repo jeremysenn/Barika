@@ -1,6 +1,5 @@
 class Client < ActiveRecord::Base
   # new columns need to be added here to be writable through mass assignment
-#  attr_accessible :username, :email, :password, :password_confirmation
   attr_accessible :user_id
 
   set_table_name 'client'
@@ -9,6 +8,10 @@ class Client < ActiveRecord::Base
   belongs_to :user
   has_one :chart
   has_many :notes, :through => :chart
+
+  searchable do
+    text :first, :last
+  end
 
   ##############################
   #    Class Methods           #

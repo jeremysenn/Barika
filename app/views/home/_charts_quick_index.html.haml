@@ -1,0 +1,18 @@
+%div{:style => "height: 300px !important;overflow: scroll;"}
+  %table.table.table-striped.table-hover
+    %tbody
+      - @charts.each do |chart|
+        %tr
+          %td= link_to chart.client.full_name, "#chart" + chart.id.to_s, "data-toggle" => "modal", :type => "button"
+        %div{:id => "chart" + chart.id.to_s, :class => "modal", :style => "display:none;"}
+          .modal-header
+            = link_to "×", '#', :class => "close", "data-dismiss" => "modal"
+            %strong= "#{chart.client.full_name}"
+          .modal-body
+            .span6
+              - chart.notes.each do |note|
+                %p
+                  = link_to truncate(note.details, :length => 80), note_path(note)
+          .modal-footer
+            = link_to 'Show more', chart_path(chart), :class => 'btn btn-success'
+            = link_to 'Close', '#', :class => 'btn', "data-dismiss" => "modal"

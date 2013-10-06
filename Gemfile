@@ -14,6 +14,9 @@ gem 'execjs'
 gem 'therubyracer'
 gem 'unicorn', '1.1.5', :require => false
 gem "haml-rails" #Set default views to haml
+gem 'sunspot_rails' #Full text searching
+gem 'sunspot_solr' # optional pre-packaged Solr distribution for use in development
+gem 'sunspot_with_kaminari' #Pagination with Sunspot
 
 # Gems used only for assets and not required
 # in production environments by default.

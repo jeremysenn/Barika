@@ -8,7 +8,7 @@ class ChartsController < ApplicationController
 
   def show
     @chart = Chart.find(params[:id])
-    @tags = Tag.all.uniq.sort_by{|t| t.name.downcase}
+    @tags = current_user.tags.uniq.sort_by{|t| t.name.downcase}
 #    @tags = current_user.tags.all.uniq.sort_by{|t| t.name.downcase}
     unless current_user.tags.all.blank?
       @tag_list = current_user.tags.all.sort_by(&:name).collect{|t| t.name}.uniq
@@ -34,8 +34,8 @@ class ChartsController < ApplicationController
     @chart.client = Client.find(params[:client]) unless params[:client].blank?
 
     1.times{@chart.notes.build}
-    unless Tag.all.blank?
-      @tags = Tag.all.sort_by(&:name).collect{|t| t.name}.uniq
+    unless current_user.tags.blank?
+      @tags = current_user.tags.sort_by(&:name).collect{|t| t.name}.uniq
     else
       @tags = []
     end

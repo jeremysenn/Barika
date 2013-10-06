@@ -1,0 +1,19 @@
+%div{:style => "height: 300px !important;overflow: scroll;"}
+  %table.table.table-striped.table-hover
+    %tbody
+      - @clients.each do |client|
+        %tr
+          %td= link_to client.full_name, "#client" + client.id.to_s, "data-toggle" => "modal", :type => "button"
+        %div{:id => "client" + client.id.to_s, :class => "modal", :style => "display:none;"}
+          .modal-header
+            = link_to "×", '#', :class => "close", "data-dismiss" => "modal"
+            %strong= "#{client.full_name}"
+          .modal-body
+            .span6
+              - unless client.spousename.blank?
+                %p
+                  %strong Souse
+                  = client.spousename
+          .modal-footer
+            = link_to 'Show more', client_path(client), :class => 'btn btn-success'
+            = link_to 'Close', '#', :class => 'btn', "data-dismiss" => "modal"

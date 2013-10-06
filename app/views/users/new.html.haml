@@ -1,5 +1,7 @@
-- title "Sign up"
+.container
+  .form-signin
+    %h2.form-signin-heading Sign Up
 
-%p== Already have an account? #{link_to "Log in", login_path}.
+    %p== Already have an account? #{link_to "Log in", login_path}.
 
-= render 'form'
+    = render 'form'

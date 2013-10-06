@@ -7,19 +7,35 @@
     .control-group
       = note_form.label :date, :class => 'control-label'
       .controls
-        = note_form.date_select :date
+        %div{:id => "datepicker", :class => "input-append date"}
+          = note_form.text_field :date, "data-format" => "yyyy-MM-dd", :value => Date.today, :class => 'input-small', :default => Time.now
+          %span{:class => "add-on"}
+            %i.icon-calendar
     .control-group
       = note_form.label :details, :class => 'control-label'
       .controls
-        = note_form.text_area :details, :class => 'text_area'
+        = note_form.text_area :details, :class => 'text_area span5', :rows => 5
     .control-group
-      = note_form.label :tag_names, :class => 'control-label'
+      = note_form.label "Tags", :class => 'control-label'
       .controls
         = note_form.text_field :tag_names, :class => 'text_field', :id => 'tags'
+
+        
   .form-actions
     = f.submit nil, :class => 'btn btn-primary'
     = link_to t('.cancel', :default => t("helpers.links.cancel")), charts_path, :class => 'btn'
 
-%script
+
+:javascript
+
+  $('#datepicker').datepicker({
+    format: 'yyyy-mm-dd',
+    todayHighlight: true
+  });
+
   var tags = "#{@tags.join(',')}";
-  $('#tags').tagit({availableTags: tags.split(',')});
+  $('#tags').tagit({
+    availableTags: tags.split(','),
+    allowSpaces: true
+  });
+

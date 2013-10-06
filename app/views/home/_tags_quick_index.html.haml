@@ -1,0 +1,18 @@
+%div{:style => "height: 300px !important;overflow: scroll;"}
+  %table.table.table-striped.table-hover
+    %tbody
+      - @tags.each do |tag|
+        %tr
+          %td= link_to tag.name, "#tag" + tag.id.to_s, "data-toggle" => "modal", :type => "button"
+        %div{:id => "tag" + tag.id.to_s, :class => "modal", :style => "display:none;"}
+          .modal-header
+            = link_to "×", '#', :class => "close", "data-dismiss" => "modal"
+            %strong= "#{tag.name}"
+          .modal-body
+            .span6
+              - tag.notes.each do |note|
+                %p
+                  = link_to truncate(note.details, :length => 40), note_path(note)
+          .modal-footer
+            = link_to 'Show more', tag_path(tag), :class => 'btn btn-success'
+            = link_to 'Close', '#', :class => 'btn', "data-dismiss" => "modal"
