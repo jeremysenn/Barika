@@ -3,7 +3,13 @@ class ClientsController < ApplicationController
   before_filter :login_required, :except => []
 
   def index
-    @clients = Client.all
+    @search = Client.search do
+      fulltext params[:q]
+      with :user_id, current_user.id
+      order_by :last
+      paginate :page => params[:page], :per_page => 100
+    end
+    @clients = @search.results
   end
 
   def show

@@ -1,0 +1,22 @@
+%div{:style => "height: 300px !important;overflow: scroll;"}
+  %table.table.table-striped{"data-provides" => "rowlink"}
+    %tbody
+      - @clients.each do |client|
+        %tr{"data-toggle" => "modal", :href => "#client#{client.id.to_s}"}
+          %td{:style => 'display:none;'}= link_to "Show", "#client#{client.id.to_s}", :href => "#client#{client.id.to_s}", "data-toggle" => "modal"
+          %td= client.full_name
+        %div{:id => "client" + client.id.to_s, :class => "modal", :style => "display:none;"}
+          .modal-header
+            = link_to "x", '#', :class => "close", "data-dismiss" => "modal"
+            %strong= "#{client.full_name}"
+          .modal-body
+            .span6
+              - unless client.dob.blank?
+                %strong Date of Birth
+                = client.dob.strftime("%m/%d/%Y")
+              - unless client.ssn.blank?
+                %strong Social Security Number
+                = client.ssn
+          .modal-footer
+            = link_to 'Show more', client_path(client), :class => 'btn btn-success'
+            = link_to 'Close', '#', :class => 'btn', "data-dismiss" => "modal"

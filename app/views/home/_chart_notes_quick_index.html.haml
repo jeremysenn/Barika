@@ -1,0 +1,20 @@
+%div{:style => "height: 300px !important;overflow: scroll;"}
+  %table.table.table-striped{"data-provides" => "rowlink"}
+    %tbody
+      - @notes.each do |note|
+        %tr{"data-toggle" => "modal", :href => "#note#{note.id.to_s}"}
+          %td{:style => 'display:none;'}= link_to "Show", "#note#{note.id.to_s}", :href => "#note#{note.id.to_s}", "data-toggle" => "modal"
+          %td= note.chart.client.full_name
+          %td= truncate(note.details, :length => 40)
+        %div{:id => "note" + note.id.to_s, :class => "modal", :style => "display:none;"}
+          .modal-header
+            = link_to "x", '#', :class => "close", "data-dismiss" => "modal"
+            %strong= "#{note.chart.client.full_name} - #{note.date.strftime("%m/%d/%Y")}"
+          .modal-body
+            .span12
+              = simple_format(note.details)
+            - note.tags.each do |tag|
+              = link_to tag.name, tag
+          .modal-footer
+            = link_to 'Show more', note_path(note), :class => 'btn btn-success'
+            = link_to 'Close', '#', :class => 'btn', "data-dismiss" => "modal"

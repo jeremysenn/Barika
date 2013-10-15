@@ -2,106 +2,37 @@
 .page-header
   %h1
     %i.icon-user
-    = "Patients"
+    = "Patient - #{@client.full_name}"
 
-%p
-  %strong= model_class.human_attribute_name(:clientid) + ':'
-  %br
-  = @client.clientid
-%p
-  %strong= model_class.human_attribute_name(:threadid) + ':'
-  %br
-  = @client.threadid
-%p
-  %strong= model_class.human_attribute_name(:nick) + ':'
-  %br
-  = @client.nick
-%p
-  %strong= model_class.human_attribute_name(:prefix) + ':'
-  %br
-  = @client.prefix
-%p
-  %strong= model_class.human_attribute_name(:first) + ':'
-  %br
-  = @client.first
-%p
-  %strong= model_class.human_attribute_name(:middle) + ':'
-  %br
-  = @client.middle
-%p
-  %strong= model_class.human_attribute_name(:last) + ':'
-  %br
-  = @client.last
-%p
-  %strong= model_class.human_attribute_name(:suffix) + ':'
-  %br
-  = @client.suffix
-%p
-  %strong= model_class.human_attribute_name(:maritalstatusid) + ':'
-  %br
-  = @client.maritalstatusid
-%p
-  %strong= model_class.human_attribute_name(:statusid) + ':'
-  %br
-  = @client.statusid
-%p
-  %strong= model_class.human_attribute_name(:dob) + ':'
-  %br
-  = @client.dob
-%p
-  %strong= model_class.human_attribute_name(:anniversary) + ':'
-  %br
-  = @client.anniversary
-%p
-  %strong= model_class.human_attribute_name(:deceased) + ':'
-  %br
-  = @client.deceased
-%p
-  %strong= model_class.human_attribute_name(:etr) + ':'
-  %br
-  = @client.etr
-%p
-  %strong= model_class.human_attribute_name(:ssn) + ':'
-  %br
-  = @client.ssn
-%p
-  %strong= model_class.human_attribute_name(:gender) + ':'
-  %br
-  = @client.gender
-%p
-  %strong= model_class.human_attribute_name(:spousename) + ':'
-  %br
-  = @client.spousename
-%p
-  %strong= model_class.human_attribute_name(:created) + ':'
-  %br
-  = @client.created
-%p
-  %strong= model_class.human_attribute_name(:createdby) + ':'
-  %br
-  = @client.createdby
-%p
-  %strong= model_class.human_attribute_name(:modified) + ':'
-  %br
-  = @client.modified
-%p
-  %strong= model_class.human_attribute_name(:modifiedby) + ':'
-  %br
-  = @client.modifiedby
-%p
-  %strong= model_class.human_attribute_name(:preferred) + ':'
-  %br
-  = @client.preferred
-%p
-  %strong= model_class.human_attribute_name(:nomassmailing) + ':'
-  %br
-  = @client.nomassmailing
-%p
-  %strong= model_class.human_attribute_name(:user_id) + ':'
-  %br
-  = @client.user_id
+.container
+  .row-fluid
+    .span12
+      .tabbable
+        %ul.nav.nav-pills
+          %li.active
+            %a{:href => '#info', :data => {:toggle => "tab"}}
+              %i.icon-list
+              Information
+          %li
+            %a{:href => '#chart', :data => {:toggle => "tab"}}
+              %i.icon-list-alt
+              Chart
+      .tab-content.span10
+        .tab-pane.active{:id => 'info'}
+          = render :partial => 'personal_info'
+        .tab-pane{:id => 'chart'}
+          .row-fluid
+            .tabbable
+              - unless @client.chart.blank?
+                %ul.nav.nav-tabs
+                  - @client.chart.notes.sort_by{|n| [n.date]}.reverse.each do |note|
+                    %li{:class => note == @client.chart.notes.last ? "active" : ""}
+                      %a{:href => "#note_#{note.id}", :data => {:toggle => "tab"}}
+                        = note.date.strftime("%m/%d/%Y")
+              .tab-content
+                = render :partial => 'chart_notes'
+
 
 .form-actions
-  = link_to t('.back', :default => t("helpers.links.back")), clients_path, :class => 'btn'
-  = link_to t('.edit', :default => t("helpers.links.edit")), edit_client_path(@client), :class => 'btn'
-  = link_to t('.destroy', :default => t("helpers.links.destroy")), client_path(@client), :method => "delete", :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) }, :class => 'btn btn-danger'
+  = link_to t('.back', :default => t("helpers.links.back")),
+              :back, :class => 'btn'

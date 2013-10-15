@@ -12,6 +12,9 @@ class NotesController < ApplicationController
 
   def new
     @note = Note.new
+    unless params[:chart].blank?
+      @chart = Chart.find(params[:chart])
+    end
     @tags = current_user.tags.all.sort_by(&:name).collect{|t| t.name}.uniq unless current_user.tags.all.blank?
   end
 
@@ -19,7 +22,8 @@ class NotesController < ApplicationController
     @note = Note.new(params[:note])
     @tags = current_user.tags.all.sort_by(&:name).collect{|t| t.name}.uniq unless current_user.tags.all.blank?
     if @note.save
-      redirect_to @note, :notice => "Successfully created note."
+#      redirect_to @note, :notice => "Successfully created note."
+      redirect_to @note.chart, :notice => "Successfully created note."
     else
       render :action => 'new'
     end

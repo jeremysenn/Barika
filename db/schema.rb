@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120421151915) do
+ActiveRecord::Schema.define(:version => 20131007232138) do
 
   create_table "accountlineitem", :id => false, :force => true do |t|
     t.integer  "id"
@@ -541,11 +541,11 @@ ActiveRecord::Schema.define(:version => 20120421151915) do
     t.integer  "clientjotid", :null => false
     t.integer  "clientid"
     t.integer  "threadid"
-    t.string   "clientjot"
     t.datetime "created"
     t.integer  "createdby"
     t.datetime "modified"
     t.integer  "modifiedby"
+    t.text     "clientjot"
   end
 
   create_table "clientletter", :id => false, :force => true do |t|
@@ -735,6 +735,15 @@ ActiveRecord::Schema.define(:version => 20120421151915) do
     t.integer  "modifiedby"
   end
 
+  create_table "documents", :force => true do |t|
+    t.string   "title"
+    t.string   "file"
+    t.integer  "documentable_id"
+    t.string   "documentable_type"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "feedback", :id => false, :force => true do |t|
     t.integer  "id",                      :null => false
     t.string   "tom",       :limit => 30
@@ -769,7 +778,7 @@ ActiveRecord::Schema.define(:version => 20120421151915) do
   end
 
   create_table "hearingaid", :id => false, :force => true do |t|
-    t.integer  "hearingaidid",                    :null => false
+    t.integer  "hearingaidid",                   :null => false
     t.integer  "clientid"
     t.integer  "appuserid"
     t.integer  "threadid"
@@ -788,7 +797,6 @@ ActiveRecord::Schema.define(:version => 20120421151915) do
     t.integer  "batteryid"
     t.integer  "statusid"
     t.integer  "fittingresultid"
-    t.string   "note",             :limit => 256
     t.date     "fittingdate"
     t.date     "contractdate"
     t.date     "warrantyexpdate"
@@ -804,6 +812,7 @@ ActiveRecord::Schema.define(:version => 20120421151915) do
     t.date     "orderdate"
     t.date     "invoicedate"
     t.date     "creditdate"
+    t.text     "note"
   end
 
   create_table "hearingaidinvoice", :id => false, :force => true do |t|

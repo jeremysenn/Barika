@@ -1,8 +1,9 @@
 = form_for @tag do |f|
   = f.error_messages
-  %p
-    = f.label :name
-    %br
-    = f.text_field :name
-  %p
-    = f.submit
+  .control-group
+    = f.label :name, :class => 'control-label'
+    .controls
+      = f.text_field :name
+  .form-actions
+    = f.submit nil, :class => 'btn btn-primary'
+    = link_to t('.cancel', :default => t("helpers.links.cancel")), :back, :class => 'btn'

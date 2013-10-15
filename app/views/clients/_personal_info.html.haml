@@ -1,0 +1,49 @@
+- model_class = Client
+%table.table.table-striped
+  %thead
+    %th ClientID
+    %th ThreadID
+    %th Nickname
+    %th Prefix
+    %th Name
+    %th Suffix
+    %th Marital Status
+    %th StatudID
+    %th DOB
+    %th Anniversary
+    %th Deceased
+    %th ETR
+    %th SSN
+    %th Gender
+    %th Spouse
+    %th Created
+    %th Created By
+    %th Modified
+    %th Modified By
+    %th Preferred
+    %th No Mass Mailing
+    %th User
+  %tbody
+    %td= @client.clientid
+    %td= @client.threadid
+    %td= @client.nick
+    %td= @client.prefix
+    %td= @client.full_name
+    %td= @client.suffix
+    %td= @client.maritalstatusid
+    %td= @client.statusid
+    %td= @client.dob
+    %td= @client.anniversary
+    %td= @client.deceased
+    %td= @client.etr
+    %td= @client.ssn
+    %td= @client.gender
+    %td= @client.spousename
+    %td= @client.created
+    %td= @client.createdby
+    %td= @client.modified
+    %td= @client.modifiedby
+    %td= @client.preferred
+    %td= @client.nomassmailing
+    %td= @client.user.username
+  

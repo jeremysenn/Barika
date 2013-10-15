@@ -1,0 +1,14 @@
+- unless @client.chart.blank?
+  - unless @client.chart.notes.blank?
+    - @client.chart.notes.each do |note|
+      .tab-pane{:id => "note_#{note.id}", :class => note == @client.chart.notes.last ? "active" : ""}
+        %p
+          = simple_format(note.details)
+        - unless note.tags.blank?
+          - note.tags.each do |tag|
+            = link_to tag.name, tag_path(tag)
+  - else
+    No Chart notes yet.
+  = link_to "New Chart Note", new_note_path(:chart => @client.chart), :class => 'btn btn-primary'
+- else
+  = link_to "New Chart", new_chart_path(:client => @client), :class => 'btn btn-primary'

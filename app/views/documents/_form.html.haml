@@ -1,0 +1,19 @@
+= simple_form_for @document, :html => { :class => 'form-horizontal' } do |f|
+  - if @document.title.blank?
+    = f.input :title
+  - else
+    = f.hidden_field :title
+  = f.input :file
+  - if @document.documentable_type.blank?
+    = f.input :documentable_type
+  - else
+    = f.hidden_field :documentable_type
+  - if @document.documentable_id.blank?
+    = f.association :documentable
+    =# f.input :documentable_id
+  - else
+    = f.hidden_field :documentable_id
+  
+  .form-actions
+    = f.button :submit, :class => 'btn-primary'
+    = link_to t('.cancel', :default => t("helpers.links.cancel")), :back, :class => 'btn'

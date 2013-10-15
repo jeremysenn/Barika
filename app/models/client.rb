@@ -10,7 +10,9 @@ class Client < ActiveRecord::Base
   has_many :notes, :through => :chart
 
   searchable do
-    text :first, :last
+    text    :first, :last
+    integer :user_id
+    string  :last
   end
 
   ##############################

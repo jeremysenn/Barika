@@ -17,6 +17,10 @@ gem "haml-rails" #Set default views to haml
 gem 'sunspot_rails' #Full text searching
 gem 'sunspot_solr' # optional pre-packaged Solr distribution for use in development
 gem 'sunspot_with_kaminari' #Pagination with Sunspot
+gem 'carrierwave'
+gem "simple_form", ">= 2.1.0"
+gem 'rmagick', "2.13.1", :require => false #image processing
+#gem 'mini_magick' #image processing
 
 # Gems used only for assets and not required
 # in production environments by default.

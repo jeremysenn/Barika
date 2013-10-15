@@ -1,17 +1,30 @@
-- title "Tags"
+- model_class = Tag
+.page-header
+  %h1
+    %i.icon-tags
+    =t '.title', :default => model_class.model_name.human.pluralize
 
-%table
-  %tr
-    %th Name
-  - for tag in @tags
-    %tr
-      %td= tag.name
-      %td= link_to 'Show', tag
-      %td= link_to 'Edit', edit_tag_path(tag)
-      %td=# link_to 'Destroy', tag, :confirm => 'Are you sure?', :method => :delete
-      %td= button_to 'Destroy', tag, :confirm => 'Are you sure?', :class => 'delete-alert', :method => :delete
-
-%p= link_to "New Tag", new_tag_path
-
-%script
-  $('.delete-alert').click(function() { return confirm("Delete this item?");});
+.container
+  %table.table.table-striped{"data-provides" => "rowlink"}
+    %thead
+      %tr
+        %th= "Name"
+        %th= "Recent Note"
+        %th= "Recent Patient"
+        %th= "Actions"
+    %tbody
+      - @tags.each do |tag|
+        %tr
+          %td= tag.name
+          - unless tag.notes.blank?
+            %td= truncate(tag.notes.last.details, :length => 60)
+          - else
+            %td= 'None'
+          - unless tag.notes.blank?
+            %td= tag.notes.last.chart.client.full_name
+          - else
+            %td= 'None'
+          %td
+            %a{:href => tag_path(tag), :style => 'display:none;'}
+            = link_to t('.edit', :default => t("helpers.links.edit")), edit_tag_path(tag), :class => 'btn btn-mini'
+            = link_to t('.destroy', :default => t("helpers.links.destroy")), tag_path(tag), :method => :delete, :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) }, :class => 'btn btn-mini btn-danger'

@@ -1,0 +1,25 @@
+- model_class = Document
+- unless @chart_documents.blank?
+  %table.table.table-striped{"data-provides" => "rowlink"}
+    %thead
+      %tr
+        %th= model_class.human_attribute_name(:title)
+        %th= model_class.human_attribute_name(:file)
+        %th= "Patient"
+        %th= "Created"
+    %tbody
+      - @chart_documents.each do |document|
+        %tr
+          %td= document.title
+          %td= document.file
+          %td= document.documentable.client.full_name
+          %td=l document.created_at
+          %td{:style => 'display:none;'}= link_to "Show", document_path(document)
+- else
+  No Chart documents yet.
+
+- if false
+  .form-actions
+    = link_to t('.back', :default => t("helpers.links.back")),
+                  :back, :class => 'btn'
+    = link_to "New Chart Document", new_document_path(:chart => true), :class => 'btn btn-success'

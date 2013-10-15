@@ -1,24 +1,43 @@
-- title "Chart Note"
+- model_class = Note
+.page-header
+  %h1
+    %i.icon-pencil
+    = "Note"
 
-%p
-  %strong Client:
-  = @note.chart.client.full_name
-%p
-  %strong Date:
-  = @note.date.strftime("%m/%d/%Y")
-%p
-  %strong Details:
-  = simple_format h(@note.details)
-%p
-  %strong Tags:
-  %ul{:id => 'tags'}
-    - @note.tags.each do |tag|
-      %li= tag.name
+.container
+  .row-fluid
+    .span12
+      .tabbable
+        %ul.nav.nav-tabs
+          %li.active
+            %a{:href => "#details", :data => {:toggle => "tab"}}
+              %i.icon-list
+              Details
+          %li
+            %a{:href => "#documents", :data => {:toggle => "tab"}}
+              %i.icon-file
+              Documents
+      .tab-content
+        .tab-pane.active{:id => 'details'}
+          %p
+            %strong= "#{@note.chart.client.full_name} - #{@note.date.strftime("%m/%d/%Y")}"
+            = simple_format h(@note.details)
+          - unless @note.tags.blank?
+            - @note.tags.each do |tag|
+              = link_to tag.name, tag
+          .form-actions
+            = link_to "View Chart", @note.chart, :class => 'btn btn-success'
+        .tab-pane{:id => 'documents'}
+          - unless @note.documents.blank?
+            Documents
+          - else
+            No Note documents yet.
 
-%p
-  = link_to "Edit", edit_note_path(@note)
-  |
-  = link_to "Destroy", @note, :confirm => 'Are you sure?', :method => :delete
-  |
-  = link_to "Back to Chart", @note.chart
-  =# link_to "View All", notes_path
+- if false
+  %p
+    = link_to "Edit", edit_note_path(@note)
+    |
+    = link_to "Destroy", @note, :confirm => 'Are you sure?', :method => :delete
+    |
+    = link_to "Back to Chart", @note.chart
+    =# link_to "View All", notes_path

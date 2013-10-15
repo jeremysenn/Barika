@@ -7,18 +7,29 @@
     .text-error= "BARIKA"
   .nav-collapse.collapse
     %ul.nav.custom
-      %li{:class => params[:controller] == "charts" ? "active" : ""}
-        %a{:href => charts_path}
+      %li.dropdown{:class => (params[:controller] == "charts" or params[:controller] == "notes") ? "active" : ""}
+        %a{:href => '#', :class => 'dropdown-toggle', :data => {:toggle => 'dropdown'}}
           %i.icon-list-alt
           Charts
+          %b.caret
+        %ul.dropdown-menu
+          %li
+            %a{:href => new_note_path}
+              %i.icon-pencil
+              New Note
+          %li= link_to "All Charts", charts_path
       %li{:class => params[:controller] == "clients" ? "active" : ""}
         %a{:href => clients_path}
           %i.icon-user
           Patients
-      %li.dropdown{:class => params[:controller] == "tags" ? "active" : ""}
+      %li{:class => params[:controller] == "tags" ? "active" : ""}
         %a{:href => tags_path}
           %i.icon-tags
           Tags
+      %li{:class => params[:controller] == "users" ? "active" : ""}
+        %a{:href => documents_path}
+          %i.icon-file
+          Documents
     %ul.nav.pull-right
       %li.divider-vertical
       %li.dropdown

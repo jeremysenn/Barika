@@ -3,12 +3,19 @@ class ChartsController < ApplicationController
   before_filter :login_required, :except => []
 
   def index
-    @charts = Chart.all
+    @search = Chart.search do
+      fulltext params[:q]
+      with :user_id, current_user.id
+      order_by :client_full_name
+      paginate :page => params[:page], :per_page => 100
+    end
+    @charts = @search.results
   end
 
   def show
     @chart = Chart.find(params[:id])
     @tags = current_user.tags.uniq.sort_by{|t| t.name.downcase}
+    @chart_documents = @chart.documents
 #    @tags = current_user.tags.all.uniq.sort_by{|t| t.name.downcase}
     unless current_user.tags.all.blank?
       @tag_list = current_user.tags.all.sort_by(&:name).collect{|t| t.name}.uniq

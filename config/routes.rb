@@ -1,4 +1,11 @@
 BarikaChart::Application.routes.draw do
+
+  resources :documents do
+    member do
+      get :serve
+    end
+  end
+
   resources :tags
 
   resources :notes

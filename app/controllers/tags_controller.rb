@@ -3,7 +3,8 @@ class TagsController < ApplicationController
   before_filter :login_required, :except => []
 
   def index
-    @tags = Tag.all
+    @tags = Tag.all.sort_by(&:name)
+#    @tags = current_user.tags
     respond_to do |format|
      format.html
      format.json { render :json => @tags }

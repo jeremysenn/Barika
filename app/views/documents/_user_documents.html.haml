@@ -1,0 +1,21 @@
+- model_class = Document
+- unless @company_documents.blank?
+  %table.table.table-striped{"data-provides" => "rowlink"}
+    %thead
+      %tr
+        %th= model_class.human_attribute_name(:title)
+        %th= model_class.human_attribute_name(:file)
+        %th= "Created"
+    %tbody
+      - @company_documents.each do |document|
+        %tr
+          %td= document.title
+          %td= document.file
+          %td=l document.created_at
+          %td{:style => 'display:none;'}= link_to "Show", document_path(document)
+- else
+  No Company documents yet.
+.form-actions
+  = link_to t('.back', :default => t("helpers.links.back")),
+                :back, :class => 'btn'
+  = link_to "New Company Document", new_document_path(:user => current_user), :class => 'btn btn-primary'

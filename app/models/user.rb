@@ -9,6 +9,7 @@ class User < ActiveRecord::Base
   has_many :charts, :through => :clients
   has_many :notes, :through => :charts
   has_many :tags, :through => :notes
+  has_many :documents, :as => :documentable,  :dependent => :destroy
 
   validates :username, :presence => true
   validates_uniqueness_of :username, :email, :allow_blank => true
