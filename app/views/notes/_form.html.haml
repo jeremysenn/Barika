@@ -2,7 +2,7 @@
   = f.error_messages
   .control-group
     - if @chart.blank?
-      = f.select :chart_id, Chart.all.sort_by{|c| c.client.last }.collect {|c| [ c.client.full_name, c.id ] }, {:include_blank => false}
+      = f.select :chart_id, current_user.charts.sort_by{|c| c.client.last }.collect {|c| [ c.client.full_name, c.id ] }, {:include_blank => false}
     - else
       = f.hidden_field :chart_id, :value => params[:chart]
       %strong= @chart.client.full_name
