@@ -15,7 +15,11 @@ class NotesController < ApplicationController
     unless params[:chart].blank?
       @chart = Chart.find(params[:chart])
     end
-    @tags = current_user.tags.all.sort_by(&:name).collect{|t| t.name}.uniq unless current_user.tags.all.blank?
+    unless current_user.tags.all.blank?
+      @tags = current_user.tags.all.sort_by(&:name).collect{|t| t.name}.uniq unless current_user.tags.all.blank?
+    else
+      @tags = []
+    end
   end
 
   def create
