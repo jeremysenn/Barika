@@ -1,12 +1,12 @@
 - unless @chart.notes.blank?
   - @chart.notes.each do |note|
     .tab-pane{:id => "note_#{note.id}", :class => note == @chart.notes.last ? "active" : ""}
-      %p= link_to "New Note Document", new_document_path(:note => note), :class => 'btn btn-small btn-warning'
       %p
         = simple_format(note.details)
       - unless note.tags.blank?
         - note.tags.each do |tag|
           = link_to tag.name, tag_path(tag)
+      %p= link_to 'Show More', note, :class => 'btn btn-small btn-warning'
 - else
   No Chart notes yet.
 .form-actions

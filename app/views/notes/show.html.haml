@@ -25,13 +25,11 @@
           - unless @note.tags.blank?
             - @note.tags.each do |tag|
               = link_to tag.name, tag
-          .form-actions
-            = link_to "View Chart", @note.chart, :class => 'btn btn-success'
+          
         .tab-pane{:id => 'documents'}
-          - unless @note.documents.blank?
-            Documents
-          - else
-            No Note documents yet.
+          = render :partial => 'note_documents'
+      .form-actions
+        = link_to "View Chart", @note.chart, :class => 'btn btn-success'
 
 - if false
   %p

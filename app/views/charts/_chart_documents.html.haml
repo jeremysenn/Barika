@@ -1,5 +1,6 @@
 - model_class = Document
 - unless @chart.documents.blank?
+  %strong Chart Documents
   %table.table.table-striped{"data-provides" => "rowlink"}
     %thead
       %tr
@@ -17,6 +18,28 @@
           %td{:style => 'display:none;'}= link_to "Show", document_path(document)
 - else
   No Chart documents yet.
+
+- unless @chart.notes.blank?
+  - @chart.notes.each do |note|
+    - unless note.documents.blank?
+      %strong
+        Note Documents -
+        = note.date.strftime("%m/%d/%Y")
+      %table.table.table-striped{"data-provides" => "rowlink"}
+        %thead
+          %tr
+            %th= 'Title'
+            %th= 'File'
+            %th= "Patient"
+            %th= "Created"
+        %tbody
+          - note.documents.each do |document|
+            %tr
+              %td= document.title
+              %td= document.file
+              %td= document.documentable.chart.client.full_name
+              %td=l document.created_at
+              %td{:style => 'display:none;'}= link_to "Show", document_path(document)
 
 .form-actions
   = link_to "New Chart Document", new_document_path(:chart => @chart), :class => 'btn btn-primary'
