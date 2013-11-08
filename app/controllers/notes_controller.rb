@@ -12,6 +12,9 @@ class NotesController < ApplicationController
 
   def new
     @note = Note.new
+    if @note.document.blank?
+      @note.document.build
+    end
     @tags = current_user.tags.all.sort_by(&:name).collect{|t| t.name}.uniq unless current_user.tags.all.blank?
   end
 
@@ -19,6 +22,12 @@ class NotesController < ApplicationController
     @note = Note.new(params[:note])
     @tags = current_user.tags.all.sort_by(&:name).collect{|t| t.name}.uniq unless current_user.tags.all.blank?
     if @note.save
+      unless params[:note][:document].blank?
+        document = Document.new(params[:note][:document])
+        document.documentable_id = @note.id
+        document.documentable_type = "Note"
+        document.save
+      end
       redirect_to @note, :notice => "Successfully created note."
     else
       render :action => 'new'
@@ -34,6 +43,14 @@ class NotesController < ApplicationController
   def update
     @note = Note.find(params[:id])
     if @note.update_attributes(params[:note])
+      unless @note.document.blank?
+        @note.document.update_attributes(params[:note][:document])
+      else
+        document = Document.new(params[:note][:document])
+        document.documentable_id = @note.id
+        document.documentable_type = "Note"
+        document.save
+      end
       redirect_to @note, :notice  => "Successfully updated note."
     else
       render :action => 'edit'

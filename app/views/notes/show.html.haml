@@ -14,6 +14,12 @@
   %ul{:id => 'tags'}
     - @note.tags.each do |tag|
       %li= tag.name
+%p
+  %strong File:
+  - unless @note.document.blank?
+    = link_to @note.document.file, @note.document.file.url, :target => :blank
+  - else
+    None
 
 %p
   = link_to "Edit", edit_note_path(@note)

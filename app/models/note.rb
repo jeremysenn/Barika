@@ -1,10 +1,12 @@
 class Note < ActiveRecord::Base
-  attr_accessible :chart_id, :details, :date, :tag_names
+  attr_accessible :chart_id, :details, :date, :tag_names, :document_attributes
 
   belongs_to :chart
   has_many :taggings, :dependent => :destroy
   has_many :tags, :through => :taggings
-  has_many :documents, :as => :documentable,  :dependent => :destroy
+  has_one :document, :as => :documentable,  :dependent => :destroy
+
+#  accepts_nested_attributes_for :document, :allow_destroy => true, :reject_if => lambda { |a| a[:file].blank? }
   
   validates :details, :presence => true
   attr_writer :tag_names
