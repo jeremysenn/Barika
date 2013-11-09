@@ -16,7 +16,8 @@
   %p
     = f.fields_for :document do |document_form|
       = document_form.label :file
-      = link_to note.document.file, note.document.file.url unless note.document.blank?
+      - unless note.document.blank? or note.document.file.blank?
+        = link_to note.document.file, note.document.file.url unless note.document.blank?
       %p= document_form.file_field :file
   %p
     = f.submit

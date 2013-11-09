@@ -16,7 +16,7 @@
       %li= tag.name
 %p
   %strong File:
-  - unless @note.document.blank?
+  - unless @note.document.blank? or note.document.file.blank?
     = link_to @note.document.file, @note.document.file.url, :target => :blank
   - else
     None
