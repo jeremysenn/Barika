@@ -1,5 +1,6 @@
 -# current_user.clients.all.sort_by(&:last).each do |client|
-- Client.all.sort_by(&:last).each do |client|
+-# Client.all.sort_by(&:last).each do |client|
+- Client.all.sort_by{|x| x[:last].downcase}.each do |client|
   - unless client.chart.blank?
     %p= link_to client.full_name, client.chart
   - else
