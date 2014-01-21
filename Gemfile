@@ -1,13 +1,16 @@
 source 'http://rubygems.org'
+ruby '1.9.3'
 
 gem 'rails', '3.1.3'
+
 
 # Bundle edge Rails instead:
 # gem 'rails',     :git => 'git://github.com/rails/rails.git'
 
 gem "nifty-generators"
-gem 'pg' #FOR POSTGRES
-#gem 'postgres-pr'
+#gem 'pg' #FOR POSTGRES
+#gem 'pg', "0.15.1" # Postgres database
+gem 'postgres-pr'
 gem 'haml'
 gem 'kaminari' #FOR PAGINATION
 gem 'execjs'

@@ -14,6 +14,14 @@ class Client < ActiveRecord::Base
   #    Class Methods           #
   ##############################
 
+  def self.search(search)
+    if search
+      find(:all, :conditions => ["((lower(first) || ' ' || lower(last)) LIKE ?) OR lower(first) LIKE ? OR lower(last) LIKE ?", "%#{search}%".downcase, "%#{search}%".downcase, "%#{search}%".downcase])
+    else
+      find(:all)
+    end
+  end
+
   #############################
   #     Instance Methods      #
   #############################

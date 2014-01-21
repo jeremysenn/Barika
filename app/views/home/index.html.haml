@@ -1,7 +1,27 @@
+= form_tag root_path, :method => 'get' do
+  %p
+    = text_field_tag :search, params[:search], size: 40, placeholder: 'Enter name, leave blank for all', :style => "height:20px; font-size:12pt;"
+    = submit_tag "Search", :name => nil
+  %hr
+
+- unless @clients.blank?
+  %table
+    - @clients.sort_by{|x| x[:last].downcase}.each_slice(5) do |clients|
+      %tr
+        - clients.each do |client|
+          - unless client.chart.blank?
+            %td= link_to client.full_name, client.chart
+          - else
+            %td= link_to client.full_name, new_chart_path(:client => client)
+          %td &nbsp;
+      %tr
+        %td &nbsp;
+
 -# current_user.clients.all.sort_by(&:last).each do |client|
 -# Client.all.sort_by(&:last).each do |client|
-- Client.all.sort_by{|x| x[:last].downcase}.each do |client|
-  - unless client.chart.blank?
-    %p= link_to client.full_name, client.chart
-  - else
-    %p= link_to client.full_name, new_chart_path(:client => client)
+-#
+  - Client.all.sort_by{|x| x[:last].downcase}.each do |client|
+    - unless client.chart.blank?
+      %p= link_to client.full_name, client.chart
+    - else
+      %p= link_to client.full_name, new_chart_path(:client => client)

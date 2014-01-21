@@ -3,6 +3,8 @@ class HomeController < ApplicationController
   before_filter :login_required, :except => []
 
   def index
+    @clients = Client.search(params[:search])
+    logger.debug "search #{params[:search]}; @clients: #{@clients}"
   end
 
   def download
