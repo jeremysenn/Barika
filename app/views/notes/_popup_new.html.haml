@@ -5,8 +5,9 @@
       = f.hidden_field :chart_id, :value => chart.id
     %p
       = f.label :date
+      = Time.now
       %br
-      = f.date_select :date
+      = f.date_select :date, :default => Time.now.to_date
     %p
       = f.label :details
       %br
