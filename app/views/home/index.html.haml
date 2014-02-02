@@ -1,6 +1,6 @@
 = form_tag root_path, :method => 'get' do
   %p
-    = text_field_tag :search, params[:search], size: 40, placeholder: 'Enter name or leave blank for all', :style => "height:20px; font-size:12pt;"
+    = text_field_tag :search, params[:search], size: 40, placeholder: 'Enter name or leave blank for all', :style => "height:20px; font-size:12pt;", :autofocus => true
     = submit_tag "Search", :name => nil
   %hr
 
