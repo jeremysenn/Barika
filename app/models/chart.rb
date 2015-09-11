@@ -5,4 +5,8 @@ class Chart < ActiveRecord::Base
   belongs_to :client
 
   accepts_nested_attributes_for :notes, :reject_if => lambda { |a| a[:details].blank? }, :allow_destroy => true
+
+  def self.all_charts_with_existing_clients
+    Chart.all.select { |c| Client.exists?(c.client_id) }
+  end
 end
