@@ -7,7 +7,9 @@
     %th Details
   - for note in @notes
     %tr
-      %td= note.chart.client.full_name
+      -#
+        %td= note.chart.client.full_name
+      %td= "#{note.chart.client.blank? ? 'None' : note.chart.client.full_name}"
       %td= note.date.strftime("%m/%d/%Y")
       %td= note.details
       %td= link_to 'Show', note

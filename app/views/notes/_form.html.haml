@@ -8,7 +8,8 @@
       = f.select :chart_id, Chart.all_charts_with_existing_clients.collect {|c| [ c.client.full_name, c.id ] }, {:include_blank => false}
     - else
       = f.hidden_field :chart_id, :value => params[:chart]
-      = Chart.find(params[:chart]).client.full_name
+      = params[:chart]
+      =# Chart.find(params[:chart]).client.full_name
   %p
     = f.label :date
     %br

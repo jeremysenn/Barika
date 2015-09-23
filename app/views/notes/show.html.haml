@@ -2,7 +2,10 @@
 
 %p
   %strong Client:
-  = @note.chart.client.full_name
+  - unless @note.chart.client.blank?
+    = @note.chart.client.full_name
+  - else
+    None
 %p
   %strong Date:
   = @note.date.strftime("%m/%d/%Y")
