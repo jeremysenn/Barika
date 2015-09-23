@@ -1,6 +1,6 @@
 %h3
   - unless @chart.client_id.blank?
-    = @chart.client.full_name + " " + "Chart"
+    = "#{@chart.client.full_name} Chart"
   - else
     No Client
   - unless @chart.client.blank? or @chart.client.dob.blank?
