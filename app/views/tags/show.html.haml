@@ -7,7 +7,10 @@
 %p
   %strong Patients:
 - @tag.notes.each do |note|
-  %p= note.chart.client.full_name
+  - unless note.chart.client_id.blank? or note.chart.client.blank?
+    %p= note.chart.client.full_name
+  - else
+    No Client
 
 %p
   = link_to "Edit", edit_tag_path(@tag)
